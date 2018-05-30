@@ -1,3 +1,5 @@
+const cards = document.getElementsByClassName('card');   //defines Cards (li element)
+
 /*
  * Create a list that holds all of your cards
  */
@@ -11,19 +13,19 @@
  */
 
 // Shuffle function from http://stackoverflow.com/a/2450976
-function shuffle(array) {
-    const currentIndex = array.length, temporaryValue, randomIndex;
-
-    while (currentIndex !== 0) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
-    }
-
-    return array;
-}
+// function shuffle(array) {
+//     const currentIndex = array.length, temporaryValue, randomIndex;
+//
+//     while (currentIndex !== 0) {
+//         randomIndex = Math.floor(Math.random() * currentIndex);
+//         currentIndex -= 1;
+//         temporaryValue = array[currentIndex];
+//         array[currentIndex] = array[randomIndex];
+//         array[randomIndex] = temporaryValue;
+//     }
+//
+//     return array;
+// }
 
 
 /*
@@ -36,3 +38,16 @@ function shuffle(array) {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
+/*********************************************************************************************
+
+                    MY    CODE
+
+*********************************************************************************************/
+
+function reveal(event) {                      //This gets called.
+  console.log('revealed');                    //This message is logged.
+  cards.classList.add('open');                // ERROR!
+
+}
+
+cards.addEventListener('click', reveal());    //This code runs fine, click not tested. waiting for reveal F.

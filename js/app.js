@@ -43,11 +43,23 @@ const cards = document.getElementsByClassName('card');   //defines Cards (li ele
                     MY    CODE
 
 *********************************************************************************************/
+const allCards = document.querySelectorAll('.card');     // creates the variable for all the cards
+const openCards = [];       // openCard.length
 
-function reveal(event) {                      //This gets called.
-  console.log('revealed');                    //This message is logged.
-  cards.classList.add('open');                // ERROR!
+allCards.forEach(function(card){
+  card.addEventListener('click', function(e){
+    console.log(e);
+    openCards.push(card);
 
-}
-
-cards.addEventListener('click', reveal());    //This code runs fine, click not tested. waiting for reveal F.
+    if (openCards.length > 2) {    //hide
+    } else {
+      card.classList.add('open', 'show');     //// TODO: fix bug: 2 clicks on same card.
+      // setTimeout(function(){
+      //   openCards.forEach(function(card){
+      //     card.classList.remove('open', 'show');
+      //   });
+      //   openCards = [];
+      // }, 1000);
+    }
+  });
+});

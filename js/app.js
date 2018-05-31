@@ -1,9 +1,18 @@
-const cards = document.getElementsByClassName('card');   //defines Cards (li element)
+const cards = document.getElementsByClassName('fa-*');   //defines Cards (li element)
 
 /*
  * Create a list that holds all of your cards
  */
-
+ const icons = [
+         'fa-diamond', 'fa-diamond',                                             // array for icons
+         'fa-paper-plane-o', 'fa-paper-plane-o',
+         'fa-anchor', 'fa-anchor',
+         'fa-bolt', 'fa-bolt',
+         'fa-cube', 'fa-cube',
+         'fa-anchor', 'fa-anchor',
+         'fa-leaf', 'fa-leaf',
+         'fa-bicycle', 'fa-bicycle'
+ ];
 
 /*
  * Display the cards on the page
@@ -43,23 +52,64 @@ const cards = document.getElementsByClassName('card');   //defines Cards (li ele
                     MY    CODE
 
 *********************************************************************************************/
-const allCards = document.querySelectorAll('.card');     // creates the variable for all the cards
-const openCards = [];       // openCard.length
+const allCards = document.querySelectorAll('.card');                            // creates the variable for all cards
+const openCards = [];                                                           // Substructure for openCard.length
+const italic = document.querySelectorAll('.fa');
+const c = 0;
+var i = 0;
+
+
 
 allCards.forEach(function(card){
-  card.addEventListener('click', function(e){
+  card.addEventListener('click', function(e){                                   // listens for click, reveals upto 2 cards
     console.log(e);
     openCards.push(card);
+    // c++;                                                                                        // Click variable counter
+    // console.log('click count =' + c);                                                           // variable to count clicks.
 
-    if (openCards.length > 2) {    //hide
+
+/*********************************************************************************************
+
+                        MAIN FUNCTION
+
+*********************************************************************************************/
+
+
+
+
+
+
+
+
+
+
+    if (openCards.length > 2) {                                                 // clicks > 2 ignored.  // TODO: bug: 2 clicks on one card.
     } else {
-      card.classList.add('open', 'show');     //// TODO: fix bug: 2 clicks on same card.
-      // setTimeout(function(){
-      //   openCards.forEach(function(card){
-      //     card.classList.remove('open', 'show');
-      //   });
-      //   openCards = [];
-      // }, 1000);
-    }
+
+      card.classList.add('open', 'show');
+      // const click1 = openCards[0].dataset.card;                              // // TODO: Goal have does (click1 === click2) if true = match.
+      // const click2 = openCards[1].dataset.card;
+      // console.log(click1);
+      // console.log(click2);
+
+
+          //console.log(italic.classList[1]);
+        //
+        // if (click1 === click2) {                                              // do icons match?   class "fa-*" match?
+        //  card.classList.add('match');                                        // labels matched cards. Instantly turns color - works.
+        // }
+      }
+
+
+
+    //                                    KEEP HIDDEN, UNTIL MATCH class WORKS.
+    //   if (openCards.length = 3){
+    //   setTimeout(function(){
+    //     openCards.forEach(function(card){
+    //       card.classList.remove('open', 'show');                             // removes classes so revealed cards will stay facedown next pick.
+    //     });
+    //     openCards = [];
+    //   }, 3000);                                                              // timeout, returns cards (unmatched) - facedown.  WORKS, but too early
+    // };
   });
 });

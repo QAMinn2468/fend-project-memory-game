@@ -1,4 +1,3 @@
-const cards = document.getElementsByClassName('card');   //defines Cards (li element)
 
 /*
  * Create a list that holds all of your cards
@@ -43,23 +42,25 @@ const cards = document.getElementsByClassName('card');   //defines Cards (li ele
                     MY    CODE
 
 *********************************************************************************************/
-const allCards = document.querySelectorAll('.card');     // creates the variable for all the cards
-const openCards = [];       // openCard.length
+const allCards = document.querySelectorAll('.card');                            // creates the variable for all the cards
+const openCards = [];                                                           //  Array clear at start. origin of openCard.length
 
 allCards.forEach(function(card){
-  card.addEventListener('click', function(e){
-    console.log(e);
-    openCards.push(card);
+  card.addEventListener('click', function(e){                                   //  WORKS!  Captures click event.
+    if (!card.classList.contains('open') && !card.classList.contains('show') && !card.classList.contains('match')) {     // if clicked card is revealed or matched, don't continue (do nothing).
+    openCards.push(card);                                                       //  WORKS!  card is added to openCards array.
 
-    if (openCards.length > 2) {    //hide
+    if (openCards.length <= 2) {                                                //  WORKS! Two cards only revealed.      //  fixed bug: 2 clicks on same card.
+      card.classList.add('open', 'show');                                       //  Reveals cards by adding classes "open" and "show"
+
+      setTimeout(function(){
+        openCards.forEach(function(card){
+          card.classList.remove('open', 'show');
+        });
+        openCards = [];         //hide
+      }, 3000);
     } else {
-      card.classList.add('open', 'show');     //// TODO: fix bug: 2 clicks on same card.
-      // setTimeout(function(){
-      //   openCards.forEach(function(card){
-      //     card.classList.remove('open', 'show');
-      //   });
-      //   openCards = [];
-      // }, 1000);
-    }
+
+    }}
   });
 });

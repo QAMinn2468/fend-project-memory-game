@@ -1,4 +1,4 @@
-const cards = document.getElementsByClassName('fa-*');   //defines Cards (li element)
+const cards = document.getElementsByClassName('fa-*');   //defines Cards (li element)  ??why doesn't it collect the fa-star as well???
 
 /*
  * Create a list that holds all of your cards
@@ -14,27 +14,52 @@ const cards = document.getElementsByClassName('fa-*');   //defines Cards (li ele
          'fa-bicycle', 'fa-bicycle'
  ];
 
+
+ // for (const icon of icons) {                                                 // pull icon array from icons array.
+ //   console.log(icon);
+ // }
+
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
  *   - loop through each card and create its HTML
  *   - add each card's HTML to the page
  */
+function createCard(card) {                                                      //  create CreateCard function()
+  return '<li class="card" data-card="${card}"><i class="fa ${card}"></i></li>';
+  console.log(createCard());
+}
+
+
+function initGame() {
+  const deck = document.querySelector('.deck');
+  const cardHTML = shuffle(cards).map[function(card) {
+    return createCard(card);
+  }]
+  deck.innerText(cardHTML.join(''));
+
+}
+
+initGame();
+
+
+
+
 
 // Shuffle function from http://stackoverflow.com/a/2450976
-// function shuffle(array) {
-//     const currentIndex = array.length, temporaryValue, randomIndex;
-//
-//     while (currentIndex !== 0) {
-//         randomIndex = Math.floor(Math.random() * currentIndex);
-//         currentIndex -= 1;
-//         temporaryValue = array[currentIndex];
-//         array[currentIndex] = array[randomIndex];
-//         array[randomIndex] = temporaryValue;
-//     }
-//
-//     return array;
-// }
+function shuffle(array) {
+    // const currentIndex = array.length, temporaryValue, randomIndex;
+    //
+    // while (currentIndex !== 0) {
+    //     randomIndex = Math.floor(Math.random() * currentIndex);
+    //     currentIndex -= 1;
+    //     temporaryValue = array[currentIndex];
+    //     array[currentIndex] = array[randomIndex];
+    //     array[randomIndex] = temporaryValue;
+    // }
+
+    return array;
+}
 
 
 /*
@@ -53,19 +78,10 @@ const cards = document.getElementsByClassName('fa-*');   //defines Cards (li ele
 
 *********************************************************************************************/
 const allCards = document.querySelectorAll('.card');                            // creates the variable for all cards
-const openCards = [];                                                           // Substructure for openCard.length
+const openCards = [];                                                           // Substructure for openCards.length
 const italic = document.querySelectorAll('.fa');
 const c = 0;
 var i = 0;
-
-
-
-allCards.forEach(function(card){
-  card.addEventListener('click', function(e){                                   // listens for click, reveals upto 2 cards
-    console.log(e);
-    openCards.push(card);
-    // c++;                                                                                        // Click variable counter
-    // console.log('click count =' + c);                                                           // variable to count clicks.
 
 
 /*********************************************************************************************
@@ -75,18 +91,36 @@ allCards.forEach(function(card){
 *********************************************************************************************/
 
 
+allCards.forEach(function(card){
+  card.addEventListener('click', function(e){                                   // listens for click, reveals upto 2 cards
+    console.log(e);
+    if (!card.classList.contains('open') && !card.classList.contains('show') && !card.classList.contains('match')){
+    openCards.push(card);
+    card.classList.add('open', 'show');
 
 
-
-
-
-
-
+    // c++;                                                                                        // Click variable counter
+    // console.log('click count =' + c);                                                           // variable to count clicks.
 
     if (openCards.length > 2) {                                                 // clicks > 2 ignored.  // TODO: bug: 2 clicks on one card.
+
+      const click1 = openCards[0].dataset.card;
+      const click2 = openCards[1].dataset.card;
+      console.log(click1);
+      console.log(click2);
+      if (openCards[0].dataset.card = openCards[1].dataset.card) {
+        openCards[0].classList.add('match');
+        openCards[0].classList.add('open');
+        openCards[0].classList.add('show');
+        openCards[1].classList.add('match');
+        openCards[1].classList.add('open');
+        openCards[1].classList.add('show');
+      }
+    openCards = [];
+
     } else {
 
-      card.classList.add('open', 'show');
+
       // const click1 = openCards[0].dataset.card;                              // // TODO: Goal have does (click1 === click2) if true = match.
       // const click2 = openCards[1].dataset.card;
       // console.log(click1);
@@ -101,15 +135,15 @@ allCards.forEach(function(card){
       }
 
 
+        setTimeout(function(){
+          openCards.forEach(function(card){
+            card.classList.remove('open', 'show');                             // removes classes so revealed cards will stay facedown next pick.
+          });
+          openCards = [];
+        }, 3000);                                                              // timeout, returns cards (unmatched) - facedown.  WORKS, but too early
+      };
+    });
 
-    //                                    KEEP HIDDEN, UNTIL MATCH class WORKS.
-    //   if (openCards.length = 3){
-    //   setTimeout(function(){
-    //     openCards.forEach(function(card){
-    //       card.classList.remove('open', 'show');                             // removes classes so revealed cards will stay facedown next pick.
-    //     });
-    //     openCards = [];
-    //   }, 3000);                                                              // timeout, returns cards (unmatched) - facedown.  WORKS, but too early
-    // };
+
+
   });
-});

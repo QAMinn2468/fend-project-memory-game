@@ -79,8 +79,17 @@ allCards.forEach(function(card){
       card.classList.add('open', 'show');                                       //  WORKS!  Reveals cards by adding classes "open" and "show"
 
 // Check of they matched
-    if (openCards.length === 2) {                                   //  TODO:  Two cards only revealed.      //  fixed bug: 2 clicks on same card.
+    if (openCards.length === 2) {                                               // WORKS! fixed:  Two cards only revealed.      //  fixed bug: 2 clicks on same card.
+      if (openCards[0].dataset.card === openCards[1].dataset.card) {
+        openCards[0].classList.add('match');
+        openCards[0].classList.add('open');
+        openCards[0].classList.add('show');
+        openCards[1].classList.add('match');
+        openCards[1].classList.add('open');
+        openCards[1].classList.add('show');
 
+
+      }
 
 
 

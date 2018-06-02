@@ -75,21 +75,21 @@ var openCards = [];                                                             
 allCards.forEach(function(card){
   card.addEventListener('click', function(e){                                   //  WORKS!  Captures click event.
     if (!card.classList.contains('open') && !card.classList.contains('show') && !card.classList.contains('match')) {     // if clicked card is revealed or matched, don't continue (do nothing).
-    openCards.push(card);                                                       //  WORKS!  card is added to openCards array.
-    card.classList.add('open', 'show');                                         //  WORKS!  Reveals cards by adding classes "open" and "show"
+      openCards.push(card);                                                     //  WORKS!  card is added to openCards array.
+      card.classList.add('open', 'show');                                       //  WORKS!  Reveals cards by adding classes "open" and "show"
 
 // Check of they matched
+    if (openCards.length === 2) {                                   //  TODO:  Two cards only revealed.      //  fixed bug: 2 clicks on same card.
 
 
 
 
 //if cards don't match - go away!
 
-    if (openCards.length <= 2) {                                   //  // TODO:  Two cards only revealed.      //  fixed bug: 2 clicks on same card.
       setTimeout(function(){
         openCards.forEach(function(card) {
-          card.classList.remove('open', 'show');                     //// TODO:  bug - will remove single cards
-        });                                                          // // TODO: when cards returned, advance moves by 1.
+          card.classList.remove('open', 'show');                                // fixed:  bug - will remove single cards
+        });                                                          //  TODO: when cards returned, advance moves by 1.
 
         openCards = [];
       }, 1000);

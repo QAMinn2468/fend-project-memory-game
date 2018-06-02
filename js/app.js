@@ -11,6 +11,8 @@ const cards = ['fa-diamond', 'fa-diamond',                                      
                'fa-bicycle', 'fa-bicycle',
                'fa-bomb', 'fa-bomb']
 
+
+
 function generateCard(card) {
   return `<li class="card" data-card= ${card}><i class="fa ${card}"></i>`       // WORKS!!  card is a variable not a string.
 }
@@ -57,7 +59,8 @@ function initGame() {
   const cardHTML = shuffle(cards).map(function(card){
     return generateCard(card);
   });
-  console.log('restart');                             // returns twice at start?? // TODO: ??
+  const moves = 0;
+  console.log(moves);                             // returns twice at start?? // TODO: ??
   deck.innerHTML = cardHTML.join('');                                           // WORKS! Deck of cards with icons is constructed  //   fix icons - DONE
 }
 
@@ -65,30 +68,36 @@ initGame();
 
 
 const restart = document.querySelector('.restart');                             // WORKS!  assign restart class to restart variable.
+
+
 restart.addEventListener('click', function(){
-  // TODO: add code here.
+  console.log('The reset button was clicked');
 });        // WORKS!  event listener - listens for click on the div restart, // TODO: then runs the function initGame().
+
+
 
 const allCards = document.querySelectorAll('.card');                            // creates the variable for all the cards
 var openCards = [];                                                             //  Array clear at start. origin of openCard.length
 
+
+
+
 allCards.forEach(function(card){
-  card.addEventListener('click', function(e){                                   //  WORKS!  Captures click event.
+  card.addEventListener('click', function(e){                                   //  WORKS!  Captures click event
     if (!card.classList.contains('open') && !card.classList.contains('show') && !card.classList.contains('match')) {     // if clicked card is revealed or matched, don't continue (do nothing).
+
       openCards.push(card);                                                     //  WORKS!  card is added to openCards array.
       card.classList.add('open', 'show');                                       //  WORKS!  Reveals cards by adding classes "open" and "show"
 
 // Check of they matched
     if (openCards.length === 2) {                                               // WORKS! fixed:  Two cards only revealed.      //  fixed bug: 2 clicks on same card.
-      if (openCards[0].dataset.card === openCards[1].dataset.card) {
+      if (openCards[0].dataset.card === openCards[1].dataset.card) {            // WORKS!!  GAME IS NOW PLAYABLE!!!!!
         openCards[0].classList.add('match');
         openCards[0].classList.add('open');
         openCards[0].classList.add('show');
         openCards[1].classList.add('match');
         openCards[1].classList.add('open');
         openCards[1].classList.add('show');
-
-
       }
 
 

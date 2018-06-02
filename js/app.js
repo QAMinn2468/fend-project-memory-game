@@ -10,9 +10,9 @@ const cards = ['fa-diamond', 'fa-diamond',
                'fa-leaf', 'fa-leaf',
                'fa-bicycle', 'fa-bicycle',
                'fa-bomb', 'fa-bomb']
-               
+
 function generateCard(card) {
-  return `<li class="card" data-card= ${'cards'}><i class="fa ${'cards'}"></i>`
+  return `<li class="card" data-card= ${card}><i class="fa ${card}"></i>`
 }
 /*
  * Display the cards on the page

@@ -2,7 +2,7 @@
 /*
  * Create a list that holds all of your cards
  */
-const cards = ['fa-diamond', 'fa-diamond',
+const cards = ['fa-diamond', 'fa-diamond',                                      // WORKS!  Holds icons for function
                'fa-paper-plane-o', 'fa-paper-plane-o',
                'fa-anchor', 'fa-anchor',
                'fa-bolt', 'fa-bolt',
@@ -12,7 +12,7 @@ const cards = ['fa-diamond', 'fa-diamond',
                'fa-bomb', 'fa-bomb']
 
 function generateCard(card) {
-  return `<li class="card" data-card= ${card}><i class="fa ${card}"></i>`
+  return `<li class="card" data-card= ${card}><i class="fa ${card}"></i>`       // WORKS!!  card is a variable not a string.
 }
 /*
  * Display the cards on the page
@@ -22,7 +22,7 @@ function generateCard(card) {
  */
 
 // Shuffle function from http://stackoverflow.com/a/2450976
-function shuffle(array) {
+function shuffle(array) {                                                       //  WORKS!! - Shuffles icons.
     let currentIndex = array.length, temporaryValue, randomIndex;
 
     while (currentIndex !== 0) {
@@ -57,21 +57,26 @@ function initGame() {
   const cardHTML = shuffle(cards).map(function(card){
     return generateCard(card);
   });
-
-  deck.innerHTML = cardHTML.join('');          // WORKS! Deck of blank cards is constructed  // TODO:  fix icons.
+  console.log('restart');                             // returns twice at start?? // TODO: ??
+  deck.innerHTML = cardHTML.join('');                                           // WORKS! Deck of cards with icons is constructed  //   fix icons - DONE
 }
 
 initGame();
 
 
+const restart = document.querySelector('.restart');                             // WORKS!  assign restart class to restart variable.
+restart.addEventListener('click', function(){
+  // TODO: add code here.
+});        // WORKS!  event listener - listens for click on the div restart, // TODO: then runs the function initGame().
+
 const allCards = document.querySelectorAll('.card');                            // creates the variable for all the cards
-var openCards = [];                                                           //  Array clear at start. origin of openCard.length
+var openCards = [];                                                             //  Array clear at start. origin of openCard.length
 
 allCards.forEach(function(card){
   card.addEventListener('click', function(e){                                   //  WORKS!  Captures click event.
     if (!card.classList.contains('open') && !card.classList.contains('show') && !card.classList.contains('match')) {     // if clicked card is revealed or matched, don't continue (do nothing).
     openCards.push(card);                                                       //  WORKS!  card is added to openCards array.
-    card.classList.add('open', 'show');                                       //  Reveals cards by adding classes "open" and "show"
+    card.classList.add('open', 'show');                                         //  WORKS!  Reveals cards by adding classes "open" and "show"
 
 // Check of they matched
 
@@ -80,11 +85,11 @@ allCards.forEach(function(card){
 
 //if cards don't match - go away!
 
-    if (openCards.length <= 2) {                                                //  WORKS! Two cards only revealed.      //  fixed bug: 2 clicks on same card.
+    if (openCards.length <= 2) {                                   //  // TODO:  Two cards only revealed.      //  fixed bug: 2 clicks on same card.
       setTimeout(function(){
         openCards.forEach(function(card) {
-          card.classList.remove('open', 'show');   //// TODO:  bug - will remove single cards
-        });
+          card.classList.remove('open', 'show');                     //// TODO:  bug - will remove single cards
+        });                                                          // // TODO: when cards returned, advance moves by 1.
 
         openCards = [];
       }, 1000);

@@ -1,3 +1,4 @@
+var moves = 0;                                                                  // WORKS!  DO NOT CHANGE
 
 /*
  * Create a list that holds all of your cards
@@ -59,8 +60,7 @@ function initGame() {
   const cardHTML = shuffle(cards).map(function(card){
     return generateCard(card);
   });
-  const moves = 0;
-  console.log(moves);                             // returns twice at start?? // TODO: ??
+  console.log(moves);                             // TODO: change to log on counter //  WORKS!  returns twice at start?? -- fixed: ??
   deck.innerHTML = cardHTML.join('');                                           // WORKS! Deck of cards with icons is constructed  //   fix icons - DONE
 }
 
@@ -88,7 +88,8 @@ allCards.forEach(function(card){
 
       openCards.push(card);                                                     //  WORKS!  card is added to openCards array.
       card.classList.add('open', 'show');                                       //  WORKS!  Reveals cards by adding classes "open" and "show"
-
+       moves = moves + 1 ;
+       console.log(moves);
 // Check of they matched
     if (openCards.length === 2) {                                               // WORKS! fixed:  Two cards only revealed.      //  fixed bug: 2 clicks on same card.
       if (openCards[0].dataset.card === openCards[1].dataset.card) {            // WORKS!!  GAME IS NOW PLAYABLE!!!!!

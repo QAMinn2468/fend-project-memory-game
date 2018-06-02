@@ -2,8 +2,18 @@
 /*
  * Create a list that holds all of your cards
  */
-
-
+const cards = [
+            'fa-diamond', 'fa-diamond',
+            'fa-paper-plane-o', 'fa-paper-plane-o',
+            'fa-anchor', 'fa-anchor',
+            'fa-bolt', 'fa-bolt',
+            'fa-cube', 'fa-cube',
+            'fa-leaf', 'fa-leaf',
+            'fa-bicycle', 'fa-bicycle',
+            'fa-bomb', 'fa-bomb']
+function generateCard(card) {
+  return `<li class="card" data-card= ${'cards'}><i class="fa ${'cards'}"></i>`
+}
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -12,19 +22,19 @@
  */
 
 // Shuffle function from http://stackoverflow.com/a/2450976
-// function shuffle(array) {
-//     const currentIndex = array.length, temporaryValue, randomIndex;
-//
-//     while (currentIndex !== 0) {
-//         randomIndex = Math.floor(Math.random() * currentIndex);
-//         currentIndex -= 1;
-//         temporaryValue = array[currentIndex];
-//         array[currentIndex] = array[randomIndex];
-//         array[randomIndex] = temporaryValue;
-//     }
-//
-//     return array;
-// }
+function shuffle(array) {
+    const currentIndex = array.length, temporaryValue, randomIndex;
+
+    while (currentIndex !== 0) {
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
+    }
+
+    return array;
+}
 
 
 /*
@@ -42,6 +52,18 @@
                     MY    CODE
 
 *********************************************************************************************/
+function initGame() {
+  const deck = document.querySelector('.deck');
+  const cardHTML = shuffle(cards).map(function(card){
+    return generateCard(card);
+  });
+
+  deck.innerHTML = cardHTML.join('');
+}
+
+initGame();
+
+
 const allCards = document.querySelectorAll('.card');                            // creates the variable for all the cards
 const openCards = [];                                                           //  Array clear at start. origin of openCard.length
 
@@ -49,17 +71,23 @@ allCards.forEach(function(card){
   card.addEventListener('click', function(e){                                   //  WORKS!  Captures click event.
     if (!card.classList.contains('open') && !card.classList.contains('show') && !card.classList.contains('match')) {     // if clicked card is revealed or matched, don't continue (do nothing).
     openCards.push(card);                                                       //  WORKS!  card is added to openCards array.
+    card.classList.add('open', 'show');                                       //  Reveals cards by adding classes "open" and "show"
+
+// Check of they matched
+
+
+
+
+//if cards don't match - go away!
 
     if (openCards.length <= 2) {                                                //  WORKS! Two cards only revealed.      //  fixed bug: 2 clicks on same card.
-      card.classList.add('open', 'show');                                       //  Reveals cards by adding classes "open" and "show"
-
       setTimeout(function(){
-        openCards.forEach(function(card){
-          card.classList.remove('open', 'show');
+        openCards.forEach(function(card) {
+          card.classList.remove('open', 'show');   //// TODO:  bug - will remove single cards
         });
-        openCards = [];         //hide
-      }, 3000);
-    } else {
+
+        openCards = [];
+      }, 1000);
 
     }}
   });

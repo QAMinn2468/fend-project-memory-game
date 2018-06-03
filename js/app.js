@@ -30,6 +30,41 @@ function createCard(card) {                                                     
   console.log(createCard());
 }
 
+/*************************************************************************************
+           timer  (based on Slack @Chris N [FEND])
+*************************************************************************************/
+// let sec = 0;
+// let min = 0;
+// let timer;
+//
+// // displays the timer
+//
+// document.querySelector('timer-display').innerHTML = `0${min}:${sec}`;
+//
+//
+// function timerStart(){
+//   timer = setInterval(insertTimer, 1000);
+// }
+//
+// function timerStop(){                                     // // TODO:  call timer stop
+//   clearInterval(timer);
+//   sec = 0;
+//   min = 0;
+// }
+//
+// function insertTime(){
+//   sec++;
+//
+//   if (sec < 10){
+//     sec = `0${sec}`;
+//   }
+//
+//   if (sec >= 60){
+//     min++;
+//     sec = `00`;
+//   }
+// }
+
 
 function initGame() {
   const deck = document.querySelector('.deck');
@@ -101,6 +136,7 @@ constsider storing "ALL TIME BEST SCORE = 23, PKM/MLM"
 function initGame() {
   const deck = document.querySelector('.deck');
   moves = 0;
+  // timerStart();
   const cardHTML = shuffle(cards).map(function(card){
     return generateCard(card);
   });

@@ -18,7 +18,7 @@ body {
 }
 
 body {
-    background: #ffffff url('../img/Blue-2.jpg'); /* Background pattern from - Pixabay */
+    background: #ffffff url('../img/Blue-2.jpg');     /* Background pattern from - Pixabay */
     font-family: 'Alfa Slab One', cursive;            /* Changed font - Google Fonts */
   }
 
@@ -87,16 +87,16 @@ h1 {
  */
 
 .score-panel {
-    text-align: left;
-    width: 345px;
-    margin-bottom: 10px;
+    width: 30%;
+    margin-bottom: .5em;
 }
 
 .score-panel .stars {
     margin: 0;
     padding: 0;
     display: inline-block;
-    margin: 0 5px 0 0;
+    margin: 0 1.8em 0 1.8em;
+    color: rebeccapurple;
 }
 
 .score-panel .stars li {
@@ -105,6 +105,8 @@ h1 {
 }
 
 .score-panel .restart {
+    color: black;
     float: right;
     cursor: pointer;
+    font-size: 1.2em;
 }

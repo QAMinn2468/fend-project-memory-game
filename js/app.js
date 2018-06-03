@@ -23,6 +23,26 @@ function generateCard(card) {
  *   - loop through each card and create its HTML
  *   - add each card's HTML to the page
  */
+function createCard(card) {                                                      //  create CreateCard function()
+  return '<li class="card" data-card="${card}"><i class="fa ${card}"></i></li>';
+  console.log(createCard());
+}
+
+
+function initGame() {
+  const deck = document.querySelector('.deck');
+  const cardHTML = shuffle(cards).map[function(card) {
+    return createCard(card);
+  }]
+  deck.innerText(cardHTML.join(''));
+
+}
+
+initGame();
+
+
+
+
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {                                                       //  WORKS!! - Shuffles icons.
@@ -115,4 +135,3 @@ allCards.forEach(function(card){
 
     }}
   });
-});

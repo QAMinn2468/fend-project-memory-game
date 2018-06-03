@@ -66,8 +66,16 @@ h1 {
 }
 
 .deck .card.open {
+<<<<<<< HEAD
     transform: rotateY();
     background: lavender;   /*** passes AA required contrast ration 4.5 -This is 13.01****/
+||||||| merged common ancestors
+    transform: rotateY(0);
+    background: #02b3e4;
+=======
+    transform: rotateY(180);
+    background: #02b3e4;
+>>>>>>> master
     cursor: default;
 }
 

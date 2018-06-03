@@ -1,4 +1,6 @@
 var moves = 0;                                                                  // WORKS!  DO NOT CHANGE
+var moveCounter = document.querySelector('.moves');  //define moveCounter variable
+
 
 /*
  * Create a list that holds all of your cards
@@ -31,6 +33,8 @@ function createCard(card) {                                                     
 
 function initGame() {
   const deck = document.querySelector('.deck');
+//  moveCounter. ;                     // // TODO:  update move counter in game
+
   const cardHTML = shuffle(cards).map[function(card) {
     return createCard(card);
   }]
@@ -70,6 +74,17 @@ function shuffle(array) {                                                       
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
+
+
+ /************************************************************
+
+    Scoring notes:
+
+    ***** = until 26 clicks
+    ****  = until 31 clicks
+    ***   = until 36 clicks
+    **    = until 41 clicks
+    *     = util  46 clicks
 /*********************************************************************************************
 
                     MY    CODE
@@ -77,10 +92,11 @@ function shuffle(array) {                                                       
 *********************************************************************************************/
 function initGame() {
   const deck = document.querySelector('.deck');
+  moves = 0;
   const cardHTML = shuffle(cards).map(function(card){
     return generateCard(card);
   });
-  console.log(moves);                             // TODO: change to log on counter //  WORKS!  returns twice at start?? -- fixed: ??
+  console.log(moves);                             // TODO: have update counter //  WORKS!  returns twice at start ??
   deck.innerHTML = cardHTML.join('');                                           // WORKS! Deck of cards with icons is constructed  //   fix icons - DONE
 }
 
@@ -91,7 +107,8 @@ const restart = document.querySelector('.restart');                             
 
 
 restart.addEventListener('click', function(){
-  console.log('The reset button was clicked');
+  console.log('The reset button was clicked');   // TODO: partially works - moves reset to 0, but not on screen
+  initGame();                                    // TODO: partially works - cards reset/click event lost/screen not reset fully.
 });        // WORKS!  event listener - listens for click on the div restart, // TODO: then runs the function initGame().
 
 
@@ -108,7 +125,7 @@ allCards.forEach(function(card){
 
       openCards.push(card);                                                     //  WORKS!  card is added to openCards array.
       card.classList.add('open', 'show');                                       //  WORKS!  Reveals cards by adding classes "open" and "show"
-       moves = moves + 1 ;
+       moves = moves + 1 ;                                                      //  WORKS!  Moves counted per open/show  // TODO: remove misclick and misclick move count
        console.log(moves);
 // Check of they matched
     if (openCards.length === 2) {                                               // WORKS! fixed:  Two cards only revealed.      //  fixed bug: 2 clicks on same card.
@@ -134,4 +151,5 @@ allCards.forEach(function(card){
       }, 1000);
 
     }}
-  });
+  })
+});

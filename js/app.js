@@ -5,14 +5,14 @@ var moveCounter = document.querySelector('.moves');  //define moveCounter variab
 /*
  * Create a list that holds all of your cards
  */
-const cards = ['fa-diamond', 'fa-diamond',                                      // WORKS!  Holds icons for function
-               'fa-paper-plane-o', 'fa-paper-plane-o',
-               'fa-anchor', 'fa-anchor',
-               'fa-bolt', 'fa-bolt',
-               'fa-cube', 'fa-cube',
-               'fa-leaf', 'fa-leaf',
-               'fa-bicycle', 'fa-bicycle',
-               'fa-bomb', 'fa-bomb']
+const cards = ['fa-umbrella', 'fa-umbrella',                                      // WORKS!  Holds icons for function
+               'fa-paw', 'fa-paw',
+               'fa-anchor', 'fa-anchor',                                        // WORKS!  New icons.
+               'fa-bell-o', 'fa-bell-o',
+               'fa-music', 'fa-music',
+               'fa-tree', 'fa-tree',
+               'fa-plane', 'fa-plane',
+               'fa-flask', 'fa-flask']
 
 
 
@@ -77,14 +77,22 @@ function shuffle(array) {                                                       
 
 
  /************************************************************
+After collecting play test data for 4 players over 12 games,
+the minimum clicks was 23, the maximum clicks was 46,
+the average was 34 clicks, the mean was 35.
+
+This data was used to create the scoring table listed below.
+
+constsider storing "ALL TIME BEST SCORE = 23, PKM/MLM"
+---------------------------------------------------------------
 
     Scoring notes:
 
-    ***** = until 26 clicks
-    ****  = until 31 clicks
-    ***   = until 36 clicks
-    **    = until 41 clicks
-    *     = util  46 clicks
+    ****  = 0 - 29 clicks   - OUTSTANDING!!
+    ***   = 30 - 35 clicks   - Well Done!
+    **    = 36 - 40 clicks   - Average
+    *     = 41 clicks and over - Not bad.
+
 /*********************************************************************************************
 
                     MY    CODE
@@ -121,14 +129,14 @@ var openCards = [];                                                             
 
 allCards.forEach(function(card){
   card.addEventListener('click', function(e){                                   //  WORKS!  Captures click event
-    if (!card.classList.contains('open') && !card.classList.contains('show') && !card.classList.contains('match')) {     // if clicked card is revealed or matched, don't continue (do nothing).
+    if (!card.classList.contains('open') && !card.classList.contains('show') && !card.classList.contains('match')) {     // if clicked card is revealed or matched, ignore click.
 
       openCards.push(card);                                                     //  WORKS!  card is added to openCards array.
       card.classList.add('open', 'show');                                       //  WORKS!  Reveals cards by adding classes "open" and "show"
-       moves = moves + 1 ;                                                      //  WORKS!  Moves counted per open/show  // TODO: remove misclick and misclick move count
+       moves = moves + 1 ;                                                      //  WORKS!  Moves counted per open/show // TODO: remove misclick and misclick move count (relted to triple fast click?)
        console.log(moves);
 // Check of they matched
-    if (openCards.length === 2) {                                               // WORKS! fixed:  Two cards only revealed.      //  fixed bug: 2 clicks on same card.
+    if (openCards.length === 2) {                                               // WORKS! fixed:  Two cards only revealed. //  fixed bug: 2 clicks on same card.
       if (openCards[0].dataset.card === openCards[1].dataset.card) {            // WORKS!!  GAME IS NOW PLAYABLE!!!!!
         openCards[0].classList.add('match');
         openCards[0].classList.add('open');
@@ -137,8 +145,6 @@ allCards.forEach(function(card){
         openCards[1].classList.add('open');
         openCards[1].classList.add('show');
       }
-
-
 
 //if cards don't match - go away!
 

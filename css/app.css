@@ -1,5 +1,6 @@
 html {
     box-sizing: border-box;
+
 }
 
 *,
@@ -17,9 +18,9 @@ body {
 }
 
 body {
-    background: #ffffff url('../img/Blue-image.jpg'); /* Background pattern from Pixabay */
-    font-family: 'Coda', cursive;
-}
+    background: #ffffff url('../img/Blue-image.jpg'); /* Background pattern from - Pixabay */
+    font-family: 'Alfa Slab One', cursive;            /* Changed font - Google Fonts */
+  }
 
 .container {
     display: flex;
@@ -29,7 +30,7 @@ body {
 }
 
 h1 {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Alfa Slab One', cursive;            /* Changed font - Google Fonts */
     font-weight: 300;
 }
 

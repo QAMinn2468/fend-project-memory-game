@@ -1,0 +1,10 @@
+Blue Styling
+
+.deck .card {
+    background: rebeccapurple;
+
+.deck .card.open {
+    background: lavender; /*** passes AA required contrast. ration 4.5 -This is 13.01****/
+
+.deck .card.match {
+    background: paleturquoise;  /*** passes AA required contrast. ratio is 4.5 - This is 12.42***/

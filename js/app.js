@@ -139,10 +139,9 @@ function initGame() {
 initGame();
 
 /*************************************************************************************************
-       Restart function
+                 RESTART FUNCTION
 **************************************************************************************************/
 const restart = document.querySelector('.restart');                             // WORKS!  assign restart class to restart variable.
-
 
 restart.addEventListener('click', function(){
  for (i = 0; i <openCards.length; i++) {
@@ -160,8 +159,13 @@ restart.addEventListener('click', function(){
 
 
 
-const allCards = document.querySelectorAll('.card');                            // creates the variable for all the cards
-var openCards = [];                                                             //  Array clear at start. origin of openCard.length
+const allCards = document.querySelectorAll('.card');                            // creates the variable for all the cards   DO NOT MOVE!!
+var openCards = [];                                                             //  Array clear at start. origin of openCard.length  DO NOT MOVE!!
+
+/***************************************************************************************
+               ADVANCE MOVE COUNTER
+
+******************************************************************************************/
 
 function advanceMoves(){
   moveCounter.innerText = `${moves}`;                                             //WORKS! move to correct location.  DONE
@@ -195,7 +199,7 @@ if (moves === 14){
  }
 }
 
-function restoreStars(){                           // resets Star counter
+function restoreStars(){                                                        // WORKS!!! resets Star counter
   star1.classList.remove('fa-star-o');
   star1.classList.add('fa-star');
   star2.classList.remove('fa-star-o');
@@ -212,8 +216,8 @@ function restoreStars(){                           // resets Star counter
 
 allCards.forEach(function(card){
   card.addEventListener('click', function(e){                                   //  WORKS!  Captures click event
-    if (!card.classList.contains('open') && !card.classList.contains('show') && !card.classList.contains('match')) {     // if clicked card is revealed or matched, ignore click.
-                                                                // TODO:  remove misclick  (related to triple fast click?)
+    if ((openCards.length < 2) && (!card.classList.contains('open') && !card.classList.contains('show') && !card.classList.contains('match'))) {     // if clicked card is revealed or matched, ignore click.
+                                                                                // FIXED:  remove misclick  (related to triple fast click?)
       openCards.push(card);                                                     //  WORKS!  card is added to openCards array.
       card.classList.add('open', 'show');                                       //  WORKS!  Reveals cards by adding classes "open" and "show"
 

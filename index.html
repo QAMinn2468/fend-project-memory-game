@@ -36,6 +36,24 @@
         <ul class="deck"></ul>
     </div>
 
+    <!--   Modal Window / Dialog Box ------------------------------------->
+
+<dialog id="wonDialog">
+  <form method="dialog">
+    <section>
+      <h1>YOU WON!!</h1>
+        <span></span>   <!-- insert message here -->
+        <span></span>   <!-- insert STARS here -->
+        <span>Time:</span>   <!-- insert TIME here -->
+        <span>Moves:</span>  <!-- insert number of moves taken here -->
+    </section>
+    <menu>
+      <button id="cancel" type="reset">Cancel</button>
+      <button id="playAgain" type="submit">Play Again?</button>  <!-- TODO: hook up this button -->
+    </menu>
+  </form>
+</dialog>
+
     <script src="js/app.js"></script>
 </body>
 </html>

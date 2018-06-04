@@ -1,11 +1,14 @@
 var moves = 0;                                                                  // WORKS!  DO NOT CHANGE
 var moveCounter = document.querySelector('.moves');  //define moveCounter variable
+var match = 0;
+var wonDialog = document.querySelector('wonDialog');                            // Seems to work - assign element wonDialog to variable wonDialog.
+var cancelButton = document.querySelector('cancel');     // assign cancel button to  the variable cancelButton.
 
 
 /*
  * Create a list that holds all of your cards
  */
-const cards = ['fa-umbrella', 'fa-umbrella',                                      // WORKS!  Holds icons for function
+const cards = ['fa-umbrella', 'fa-umbrella',                                    // WORKS!  Holds icons for function
                'fa-paw', 'fa-paw',
                'fa-anchor', 'fa-anchor',                                        // WORKS!  New icons.
                'fa-bell-o', 'fa-bell-o',
@@ -25,10 +28,7 @@ function generateCard(card) {
  *   - loop through each card and create its HTML
  *   - add each card's HTML to the page
  */
-function createCard(card) {                                                      //  create CreateCard function()
-  return '<li class="card" data-card="${card}"><i class="fa ${card}"></i></li>';
-  console.log(createCard());
-}
+
 
 /*************************************************************************************
            timer  (based on Slack @Chris N [FEND])
@@ -64,22 +64,6 @@ function createCard(card) {                                                     
 //     sec = `00`;
 //   }
 // }
-
-
-function initGame() {
-  const deck = document.querySelector('.deck');
-//  moveCounter. ;                     // // TODO:  update move counter in game
-
-  const cardHTML = shuffle(cards).map[function(card) {
-    return createCard(card);
-  }]
-  deck.innerText(cardHTML.join(''));
-
-}
-
-initGame();
-
-
 
 
 
@@ -130,7 +114,7 @@ constsider storing "ALL TIME BEST SCORE = 23, PKM/MLM"
 
 /*********************************************************************************************
 
-                    MY    CODE
+                initialize Game
 
 *********************************************************************************************/
 function initGame() {
@@ -140,13 +124,14 @@ function initGame() {
   const cardHTML = shuffle(cards).map(function(card){
     return generateCard(card);
   });
-  console.log(moves);                             // TODO: have update counter //  WORKS!  returns twice at start ??
   deck.innerHTML = cardHTML.join('');                                           // WORKS! Deck of cards with icons is constructed  //   fix icons - DONE
 }
 
 initGame();
 
-
+/******************************************************************************************************
+       Restart function
+**************************************************************************************************/
 const restart = document.querySelector('.restart');                             // WORKS!  assign restart class to restart variable.
 
 
@@ -160,17 +145,20 @@ restart.addEventListener('click', function(){
 const allCards = document.querySelectorAll('.card');                            // creates the variable for all the cards
 var openCards = [];                                                             //  Array clear at start. origin of openCard.length
 
+/******************************************************************************************************************************************
 
+                                   MAIN FUNCTION
+
+*******************************************************************************************************************************************/
 
 
 allCards.forEach(function(card){
   card.addEventListener('click', function(e){                                   //  WORKS!  Captures click event
     if (!card.classList.contains('open') && !card.classList.contains('show') && !card.classList.contains('match')) {     // if clicked card is revealed or matched, ignore click.
-
+                                                                // TODO:  remove misclick  (related to triple fast click?)
       openCards.push(card);                                                     //  WORKS!  card is added to openCards array.
       card.classList.add('open', 'show');                                       //  WORKS!  Reveals cards by adding classes "open" and "show"
-       moves = moves + 1 ;                                                      //  WORKS!  Moves counted per open/show // TODO: remove misclick and misclick move count (relted to triple fast click?)
-       console.log(moves);
+
 // Check of they matched
     if (openCards.length === 2) {                                               // WORKS! fixed:  Two cards only revealed. //  fixed bug: 2 clicks on same card.
       if (openCards[0].dataset.card === openCards[1].dataset.card) {            // WORKS!!  GAME IS NOW PLAYABLE!!!!!
@@ -180,6 +168,11 @@ allCards.forEach(function(card){
         openCards[1].classList.add('match');
         openCards[1].classList.add('open');
         openCards[1].classList.add('show');
+        match = match + 1 ;                                                      //  Count matches // misclick move count FIXED
+        console.log(match);
+        if (match === 8){                                                       // WORKS! - at 8 matches proceeds with {}.
+          youWon();                        // TODO: change  to function.
+        }
       }
 
 //if cards don't match - go away!
@@ -193,5 +186,23 @@ allCards.forEach(function(card){
       }, 1000);
 
     }}
-  })
+  });
 });
+
+/*************************************************************************************************************************************
+
+                                      You Won Modal Window (based on MDN <dialog> page)
+
+*************************************************************************************************************************************/
+                                                                // TODO: set up youWon function.  open modal window.
+function youWon(){
+  console.log('you won.');
+
+  wonDialog.showModal();                                   // opens modal window.
+
+// cancel button closes dialog box
+
+cancelButton.addEventListener('click', function(){        // attaches click of cancel button to closing the modal window.
+  wonDialog.close();
+});
+}

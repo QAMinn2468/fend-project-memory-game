@@ -19,18 +19,11 @@ const cards = ['fa-umbrella', 'fa-umbrella',                                    
                'fa-plane', 'fa-plane',
                'fa-flask', 'fa-flask']
 
-// const stars = ['fa-star', 'fa-star', 'fa-star' ]  // icons for createStars function.  // TODO: logs text, needs to be icons  (string -> HTML ??)
-
-
 
 function generateCard(card) {
   return `<li class="card" data-card= ${card}><i class="fa ${card}"></i>`       // WORKS!!  card is a variable not a string.
 }
 
-
-// const starHTML = stars.map(function generateStar(star) {
-//   return `<li><i class=${stars}></i></li>`  //inserts  stars array to star HTML.
-// })
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -117,10 +110,10 @@ constsider storing "ALL TIME BEST SCORE = 23, PKM/MLM"
 
     Scoring notes:
 
-    ****  = 0 - 29 clicks   - OUTSTANDING!!  (14 moves)
-    ***   = 30 - 35 clicks   - Well Done!    (17 moves)
-    **    = 36 - 40 clicks   - Average       (20 moves)
-    *     = 41 clicks and over - Not bad.
+    ***  = 0 - 29 clicks   - OUTSTANDING!!  (14 moves)
+    **   = 30 - 35 clicks   - Well Done!    (17 moves)
+    *    = 36 - 40 clicks   - Average       (20 moves)
+    three empty stars     = 41 clicks and over - Not bad.
 
 /*********************************************************************************************
 
@@ -152,10 +145,17 @@ const restart = document.querySelector('.restart');                             
 
 
 restart.addEventListener('click', function(){
-  console.log('The reset button was clicked');   // TODO: partially works - moves reset to 0, sec and min set to 0, but not on screen
+ for (i = 0; i <openCards.length; i++) {
+    openCards[i].classList.remove('match');                                      //  WORKS! Match class is removed iterate through openCards array, remove match class.
+  }
+
+  console.log('The reset button was clicked');   // TODO: partially works - moves reset to 0 (WORKS!), sec and min set to 0, but not on screen (TIMER)
 //  restoreCard();                                // TODO: attach restore cards function here.
-  initGame();                                    // TODO: partially works - cards reset/click event lost/screen not reset fully.
-  restoreStars();                    // TODO: restore stars
+  initGame();                                    // TODO: partially works - cards reset/ icons shuffled. /click event lost/screen not reset fully.
+  restoreStars();                                                               // WORKS!! restore stars
+  console.log(openCards);
+  console.log(allCards);
+
 });                                                                             // WORKS!  event listener - listens for click on the div restart, // WORKS! : then runs the function initGame().
 
 
@@ -220,7 +220,7 @@ allCards.forEach(function(card){
 // Check of they matched
     if (openCards.length === 2) {                                               // WORKS! fixed:  Two cards only revealed. //  fixed bug: 2 clicks on same card.
        moves++;                                                                 // WORKS!  move variable increase by 1.
-       console.log('This is move number' + moves);  // verify DONE! current status of move variable.
+       console.log('This is move number ' + moves);  // verify DONE! current status of move variable.
 
        /*******************************************************************************************************************************************************************************
                                          MoveCounter

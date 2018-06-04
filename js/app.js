@@ -141,7 +141,7 @@ const restart = document.querySelector('.restart');                             
 
 restart.addEventListener('click', function(){
   console.log('The reset button was clicked');   // TODO: partially works - moves reset to 0, sec and min set to 0, but not on screen
-  restoreCard();                                // TODO: attach restore cards function here.
+//  restoreCard();                                // TODO: attach restore cards function here.
   initGame();                                    // TODO: partially works - cards reset/click event lost/screen not reset fully.
 });                                                                             // WORKS!  event listener - listens for click on the div restart, // WORKS! : then runs the function initGame().
 
@@ -176,9 +176,9 @@ allCards.forEach(function(card){
         match = match + 1 ;                                                      //  Count matches // misclick move count FIXED
         console.log(match);
         if (match === 8){                                                       // WORKS! - at 8 matches proceeds with {}.
-          youWon();                        // TODO: change  to function.
-        }
-      }
+          console.log('YOU WON!!');
+          //youWon();                        // TODO: change  to function.
+        }}
 
 //if cards don't match - go away!
 
@@ -190,8 +190,9 @@ allCards.forEach(function(card){
         openCards = [];
       }, 1000);
 
-    }}
-  });
+    }
+  }
+});
 });
 
 /*************************************************************************************************************************************

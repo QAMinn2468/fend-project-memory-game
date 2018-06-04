@@ -6,7 +6,7 @@ var cancelButton = document.querySelector('cancel');     // assign cancel button
 
 
 /*
- * Create a list that holds all of your cards
+ * Create a list that holds all of your cards                                 *Watched video via Udacity - Mike Wales*
  */
 const cards = ['fa-umbrella', 'fa-umbrella',                                    // WORKS!  Holds icons for function
                'fa-paw', 'fa-paw',

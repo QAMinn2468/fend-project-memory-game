@@ -7,14 +7,26 @@
 
 ## Instructions
 
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
+Download the game.  Open the index.html file to run.
 
-To get started, open `js/app.js` and start building out the app's functionality
 
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
+## Description
+
+This is a matching game.  Click on a tile to reveal it.  Click on a second tile, that is not already face up.  If they match, they will remain face up, otherwise they will return facedown.
+
+Once all tiles have been paired (8 matches), the game ends.
+
+
+
+### Score chart
+
+**OUTSTANDING!!** 14 moves or less
+**Well Done!**    15 - 17 moves
+**Average.**      18 - 20 Moves
+Not Bad           21 moves or more
+
 
 ## Contributing
 
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
 
 For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).

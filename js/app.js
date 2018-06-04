@@ -3,14 +3,9 @@ var moveCounter = document.querySelector('.moves');                             
 var match = 0;
 var wonDialog = document.querySelector('#wonDialog');                            // Seems to work - assign element wonDialog to variable wonDialog.
 var cancelButton = document.querySelector('cancel');    // TODO:  // assign cancel button to  the variable cancelButton.
-var star1 = document.querySelector('.oneStar');            // TODO:                 //  define star1 variable
-var star2 = document.querySelector('.twoStar');            // TODO:                 //  define star2 variable
-var star3 = document.querySelector('.threeStar');            // TODO:                 //  define star3 variable
-
-
-console.log(star1);
-console.log(star2);
-console.log(star3);
+var star1 = document.querySelector('.oneStar');                                 // WORKS!:                 //  define star1 variable
+var star2 = document.querySelector('.twoStar');                                 // WORKS:                 //  define star2 variable
+var star3 = document.querySelector('.threeStar');                               // WORKS:                 //  define star3 variable
 
 /*
  * Create a list that holds all of your cards                                 *Watched video via Udacity - Mike Wales*
@@ -150,7 +145,7 @@ function initGame() {
 
 initGame();
 
-/******************************************************************************************************
+/*************************************************************************************************
        Restart function
 **************************************************************************************************/
 const restart = document.querySelector('.restart');                             // WORKS!  assign restart class to restart variable.
@@ -160,6 +155,7 @@ restart.addEventListener('click', function(){
   console.log('The reset button was clicked');   // TODO: partially works - moves reset to 0, sec and min set to 0, but not on screen
 //  restoreCard();                                // TODO: attach restore cards function here.
   initGame();                                    // TODO: partially works - cards reset/click event lost/screen not reset fully.
+  restoreStars();                    // TODO: restore stars
 });                                                                             // WORKS!  event listener - listens for click on the div restart, // WORKS! : then runs the function initGame().
 
 
@@ -171,22 +167,42 @@ function advanceMoves(){
   moveCounter.innerText = `${moves}`;                                             //WORKS! move to correct location.  DONE
   advanceStars();                                                               // function WORKS
 }
+/*********************************************************************************************************************************
 
-function advanceStars(){                      // change star counter
-if (moves >= 14){
+                                                STAR COUNTER
+
+*******************************************************************************************************************************************/
+function advanceStars(){                                                        // WORKS!! change star counter
+if (moves === 14){
+  console.log('minus one star');
+
   star3.classList.remove('fa-star');
   star3.classList.add('fa-star-o');
  }
- if (moves >= 17){
+ if (moves === 17){
+  console.log('minus two star');
+
   star2.classList.remove('fa-star');
   star2.classList.add('fa-star-o');
+
   }
-  if (moves >= 20){
+  if (moves === 20){
+  console.log('minus three star');
+
   star1.classList.remove('fa-star');
   star1.classList.add('fa-star-o');
+
  }
 }
 
+function restoreStars(){                           // resets Star counter
+  star1.classList.remove('fa-star-o');
+  star1.classList.add('fa-star');
+  star2.classList.remove('fa-star-o');
+  star2.classList.add('fa-star');
+  star3.classList.remove('fa-star-o');
+  star3.classList.add('fa-star');
+}
 /******************************************************************************************************************************************
 
                                    MAIN FUNCTION

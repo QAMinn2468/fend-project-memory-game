@@ -18,12 +18,11 @@
         <section class="score-panel">
 
         	Moves: <span class="moves"></span>
-          <span class="filler">             </span>
 
           <ul class="stars">
-            <li><i class="fa fa-star"></i></li>
-            <li><i class="fa fa-star"></i></li>
-            <li><i class="fa fa-star"></i></li>  <!-- fa-star-o  -->
+            <li><i class="fa fa-star oneStar"></i></li>
+            <li><i class="fa fa-star twoStar"></i></li>
+            <li><i class="fa fa-star threeStar"></i></li>  
           </ul>
 
           Timer: <span class="timer-display">00:00</span>
@@ -49,7 +48,7 @@
     </section>
     <menu>
       <button id="cancel" type="reset">Cancel</button>
-      <button id="playAgain" type="submit">Play Again?</button>  <!-- TODO: hook up this button -->
+      <button id="playAgain" type="submit">Play Again?</button>  <!-- TODO: hook attach to function initGame()  -->
     </menu>
   </form>
 </dialog>

@@ -1,9 +1,16 @@
 var moves = 0;                                                                  // WORKS!  DO NOT CHANGE
-var moveCounter = document.querySelector('.moves');  //define moveCounter variable
+var moveCounter = document.querySelector('.moves');                             //  WORKS! define moveCounter variable
 var match = 0;
-var wonDialog = document.querySelector('wonDialog');                            // Seems to work - assign element wonDialog to variable wonDialog.
-var cancelButton = document.querySelector('cancel');     // assign cancel button to  the variable cancelButton.
+var wonDialog = document.querySelector('#wonDialog');                            // Seems to work - assign element wonDialog to variable wonDialog.
+var cancelButton = document.querySelector('cancel');    // TODO:  // assign cancel button to  the variable cancelButton.
+var star1 = document.querySelector('.oneStar');            // TODO:                 //  define star1 variable
+var star2 = document.querySelector('.twoStar');            // TODO:                 //  define star2 variable
+var star3 = document.querySelector('.threeStar');            // TODO:                 //  define star3 variable
 
+
+console.log(star1);
+console.log(star2);
+console.log(star3);
 
 /*
  * Create a list that holds all of your cards                                 *Watched video via Udacity - Mike Wales*
@@ -17,11 +24,18 @@ const cards = ['fa-umbrella', 'fa-umbrella',                                    
                'fa-plane', 'fa-plane',
                'fa-flask', 'fa-flask']
 
+// const stars = ['fa-star', 'fa-star', 'fa-star' ]  // icons for createStars function.  // TODO: logs text, needs to be icons  (string -> HTML ??)
+
 
 
 function generateCard(card) {
   return `<li class="card" data-card= ${card}><i class="fa ${card}"></i>`       // WORKS!!  card is a variable not a string.
 }
+
+
+// const starHTML = stars.map(function generateStar(star) {
+//   return `<li><i class=${stars}></i></li>`  //inserts  stars array to star HTML.
+// })
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -99,6 +113,7 @@ function shuffle(array) {                                                       
 After collecting play test data for 4 players over 12 games,
 the minimum clicks was 23, the maximum clicks was 46,
 the average was 34 clicks, the mean was 35.
+ (to covert clicks to moves -> divide by 2.)
 
 This data was used to create the scoring table listed below.
 
@@ -119,11 +134,11 @@ constsider storing "ALL TIME BEST SCORE = 23, PKM/MLM"
 *********************************************************************************************/
 function initGame() {
   const deck = document.querySelector('.deck');
-  moves = 0;                                                           // move variable set to zero.
-  sec = 0;                                                             //  sec variable set to zero.
-  min = 0;                                                             //  min variable set to zero.
+  moves = 0;                                                                    // move variable set to zero.
+  sec = 0;                                                                      //  sec variable set to zero.
+  min = 0;                                                                      //  min variable set to zero.
   console.log('the move counter is ' + moves);
-  advanceMoves();
+  advanceMoves();                                                               // function WORKS
 
   console.log('the timer is ' + min + ":" + sec);
   // timerStart();
@@ -153,9 +168,24 @@ const allCards = document.querySelectorAll('.card');                            
 var openCards = [];                                                             //  Array clear at start. origin of openCard.length
 
 function advanceMoves(){
-moveCounter.innerText = `${moves}`;                                             //WORKS! move to correct location.  DONE
+  moveCounter.innerText = `${moves}`;                                             //WORKS! move to correct location.  DONE
+  advanceStars();                                                               // function WORKS
 }
 
+function advanceStars(){                      // change star counter
+if (moves >= 14){
+  star3.classList.remove('fa-star');
+  star3.classList.add('fa-star-o');
+ }
+ if (moves >= 17){
+  star2.classList.remove('fa-star');
+  star2.classList.add('fa-star-o');
+  }
+  if (moves >= 20){
+  star1.classList.remove('fa-star');
+  star1.classList.add('fa-star-o');
+ }
+}
 
 /******************************************************************************************************************************************
 

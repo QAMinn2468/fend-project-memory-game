@@ -123,6 +123,8 @@ function initGame() {
   sec = 0;                                                             //  sec variable set to zero.
   min = 0;                                                             //  min variable set to zero.
   console.log('the move counter is ' + moves);
+  advanceMoves();
+
   console.log('the timer is ' + min + ":" + sec);
   // timerStart();
   const cardHTML = shuffle(cards).map(function(card){
@@ -150,6 +152,11 @@ restart.addEventListener('click', function(){
 const allCards = document.querySelectorAll('.card');                            // creates the variable for all the cards
 var openCards = [];                                                             //  Array clear at start. origin of openCard.length
 
+function advanceMoves(){
+moveCounter.innerText = `${moves}`;                                             //WORKS! move to correct location.  DONE
+}
+
+
 /******************************************************************************************************************************************
 
                                    MAIN FUNCTION
@@ -166,6 +173,15 @@ allCards.forEach(function(card){
 
 // Check of they matched
     if (openCards.length === 2) {                                               // WORKS! fixed:  Two cards only revealed. //  fixed bug: 2 clicks on same card.
+       moves++;                                                                 // WORKS!  move variable increase by 1.
+       console.log('This is move number' + moves);  // verify DONE! current status of move variable.
+
+       /*******************************************************************************************************************************************************************************
+                                         MoveCounter
+       ******************************************************************************************************************************/
+        advanceMoves();
+
+
       if (openCards[0].dataset.card === openCards[1].dataset.card) {            // WORKS!!  GAME IS NOW PLAYABLE!!!!!
         openCards[0].classList.add('match');
         openCards[0].classList.add('open');
@@ -208,7 +224,7 @@ function youWon(){
 
 // cancel button closes dialog box
 
-cancelButton.addEventListener('click', function(){        // attaches click of cancel button to closing the modal window.
-  wonDialog.close();
-});
+// cancelButton.addEventListener('click', function(){        // attaches click of cancel button to closing the modal window.
+//   wonDialog.close();
+// });
 }

@@ -107,9 +107,9 @@ constsider storing "ALL TIME BEST SCORE = 23, PKM/MLM"
 
     Scoring notes:
 
-    ****  = 0 - 29 clicks   - OUTSTANDING!!
-    ***   = 30 - 35 clicks   - Well Done!
-    **    = 36 - 40 clicks   - Average
+    ****  = 0 - 29 clicks   - OUTSTANDING!!  (14 moves)
+    ***   = 30 - 35 clicks   - Well Done!    (17 moves)
+    **    = 36 - 40 clicks   - Average       (20 moves)
     *     = 41 clicks and over - Not bad.
 
 /*********************************************************************************************
@@ -119,7 +119,11 @@ constsider storing "ALL TIME BEST SCORE = 23, PKM/MLM"
 *********************************************************************************************/
 function initGame() {
   const deck = document.querySelector('.deck');
-  moves = 0;
+  moves = 0;                                                           // move variable set to zero.
+  sec = 0;                                                             //  sec variable set to zero.
+  min = 0;                                                             //  min variable set to zero.
+  console.log('the move counter is ' + moves);
+  console.log('the timer is ' + min + ":" + sec);
   // timerStart();
   const cardHTML = shuffle(cards).map(function(card){
     return generateCard(card);
@@ -136,9 +140,10 @@ const restart = document.querySelector('.restart');                             
 
 
 restart.addEventListener('click', function(){
-  console.log('The reset button was clicked');   // TODO: partially works - moves reset to 0, but not on screen
+  console.log('The reset button was clicked');   // TODO: partially works - moves reset to 0, sec and min set to 0, but not on screen
+  restoreCard();                                // TODO: attach restore cards function here.
   initGame();                                    // TODO: partially works - cards reset/click event lost/screen not reset fully.
-});        // WORKS!  event listener - listens for click on the div restart, // TODO: then runs the function initGame().
+});                                                                             // WORKS!  event listener - listens for click on the div restart, // WORKS! : then runs the function initGame().
 
 
 
@@ -177,7 +182,7 @@ allCards.forEach(function(card){
 
 //if cards don't match - go away!
 
-      setTimeout(function(){
+      setTimeout(function restoreCard(){
         openCards.forEach(function(card) {
           card.classList.remove('open', 'show');                                // fixed:  bug - will remove single cards
         });                                                          //  TODO: when cards returned, advance moves by 1.

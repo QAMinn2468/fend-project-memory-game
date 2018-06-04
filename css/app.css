@@ -73,13 +73,13 @@ h1 {
 }
 
 .deck .card.show {
-    font-size: 33px;
+    font-size: 3.5em;
 }
 
 .deck .card.match {
     cursor: default;
     background: paleturquoise;  /*** passes AA required contrast. ratio is 4.5 - This is 12.42***/
-    font-size: 33px;
+    font-size: 2em;             /*** large font shifts to smaller font when matched.***/
 }
 
 /*

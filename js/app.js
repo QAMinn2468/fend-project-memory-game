@@ -2,14 +2,14 @@ var moves = 0;                                                                  
 var moveCounter = document.querySelector('.moves');                             //  WORKS! define moveCounter variable
 var match = 0;
 var wonDialog = document.querySelector('#wonDialog');                            // Seems to work - assign element wonDialog to variable wonDialog.
-var cancelButton = document.querySelector('cancel');    // TODO:  // assign cancel button to  the variable cancelButton.
+var cancelButton = document.querySelector('cancel');    // TODO:  // assign cancel button to  the variable cancelButton. For the modal window.
 var star1 = document.querySelector('.oneStar');                                 // WORKS!:                 //  define star1 variable
 var star2 = document.querySelector('.twoStar');                                 // WORKS:                 //  define star2 variable
 var star3 = document.querySelector('.threeStar');                               // WORKS:                 //  define star3 variable
 
-/*
- * Create a list that holds all of your cards                                 *Watched video via Udacity - Mike Wales*
- */
+/************************************************
+ * Create a list that holds all of your cards                  *Watched video via Udacity - Mike Wales*
+ ************************************************/
 const cards = ['fa-umbrella', 'fa-umbrella',                                    // WORKS!  Holds icons for function
                'fa-paw', 'fa-paw',
                'fa-anchor', 'fa-anchor',                                        // WORKS!  New icons.
@@ -35,37 +35,39 @@ function generateCard(card) {
 /*************************************************************************************
            timer  (based on Slack @Chris N [FEND])
 *************************************************************************************/
-// let sec = 0;
-// let min = 0;
-// let timer;
-//
-// // displays the timer
-//
-// document.querySelector('timer-display').innerHTML = `0${min}:${sec}`;
-//
-//
-// function timerStart(){
-//   timer = setInterval(insertTimer, 1000);
-// }
-//
-// function timerStop(){                                     // // TODO:  call timer stop
-//   clearInterval(timer);
-//   sec = 0;
-//   min = 0;
-// }
-//
-// function insertTime(){
-//   sec++;
-//
-//   if (sec < 10){
-//     sec = `0${sec}`;
-//   }
-//
-//   if (sec >= 60){
-//     min++;
-//     sec = `00`;
-//   }
-// }
+let sec = 0;
+let min = 0;
+let timer;
+
+// displays the timer
+
+document.querySelector('.timer-display').innerHTML = `0${min}:${sec}`;          //  WORKS! - Initial value for Min and Sec is displayed.
+
+
+function timerStart(){
+  timer = setInterval(insertTime, 1000);
+  console.log('timer start')
+}
+
+function timerStop(){                                     // // TODO:  call timer stop
+  clearInterval(timer);
+  sec = 0;
+  min = 0;
+  console.log('Timer Stopped.')
+}
+
+function insertTime(){                                  // TODO: get insertTime function to work.
+  sec++;
+
+  if (sec < 10){
+    sec = `0${sec}`;
+  }
+
+  if (sec >= 60){
+    min++;
+    sec = `00`;
+  }
+}
 
 
 
@@ -152,7 +154,7 @@ restart.addEventListener('click', function(){
 //  restoreCard();                                // TODO: attach restore cards function here.
   initGame();                                    // TODO: partially works - cards reset/ icons shuffled. /click event lost/screen not reset fully.
   restoreStars();                                                               // WORKS!! restore stars
-  console.log(openCards);
+  mainGame();
   console.log(allCards);
 
 });                                                                             // WORKS!  event listener - listens for click on the div restart, // WORKS! : then runs the function initGame().
@@ -212,12 +214,15 @@ function restoreStars(){                                                        
                                    MAIN FUNCTION
 
 *******************************************************************************************************************************************/
-
+mainGame();
+function mainGame(){
 
 allCards.forEach(function(card){
   card.addEventListener('click', function(e){                                   //  WORKS!  Captures click event
+    console.log('clickAnywhere');
     if ((openCards.length < 2) && (!card.classList.contains('open') && !card.classList.contains('show') && !card.classList.contains('match'))) {     // if clicked card is revealed or matched, ignore click.
                                                                                 // FIXED:  remove misclick  (related to triple fast click?)
+  console.log('clickHere');
       openCards.push(card);                                                     //  WORKS!  card is added to openCards array.
       card.classList.add('open', 'show');                                       //  WORKS!  Reveals cards by adding classes "open" and "show"
 
@@ -260,7 +265,7 @@ allCards.forEach(function(card){
   }
 });
 });
-
+}
 /*************************************************************************************************************************************
 
                                       You Won Modal Window (based on MDN <dialog> page)

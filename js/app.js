@@ -41,15 +41,16 @@ let timer;
 
 // displays the timer
 
-document.querySelector('.timer-display').innerHTML = `0${min}:${sec}`;          //  WORKS! - Initial value for Min and Sec is displayed.
+document.querySelector('.timer-display').innerHTML = `0${min}:0${sec}`;          //  WORKS! - Initial value for Min and Sec is displayed.
 
 
-function timerStart(){
-  timer = setInterval(insertTime, 1000);
+function timerStart(){                                                          // WORKS! - this function is called
   console.log('timer start')
+
+  timer = setInterval(insertTime(), 1000);
 }
 
-function timerStop(){                                     // // TODO:  call timer stop
+function timerStop(){                                     // // TODO:  call timer stop - WORKS! - this function is called.
   clearInterval(timer);
   sec = 0;
   min = 0;
@@ -58,10 +59,6 @@ function timerStop(){                                     // // TODO:  call time
 
 function insertTime(){                                  // TODO: get insertTime function to work.
   sec++;
-
-  if (sec < 10){
-    sec = `0${sec}`;
-  }
 
   if (sec >= 60){
     min++;
@@ -128,7 +125,8 @@ function initGame() {
   sec = 0;                                                                      //  sec variable set to zero.
   min = 0;                                                                      //  min variable set to zero.
   console.log('the move counter is ' + moves);
-  advanceMoves();                                                               // function WORKS
+  advanceMoves();
+  timerStart();                                                                 // function WORKS
 
   console.log('the timer is ' + min + ":" + sec);
   // timerStart();
@@ -146,17 +144,17 @@ initGame();
 const restart = document.querySelector('.restart');                             // WORKS!  assign restart class to restart variable.
 
 restart.addEventListener('click', function(){
- for (i = 0; i <openCards.length; i++) {
-    openCards[i].classList.remove('match');                                      //  WORKS! Match class is removed iterate through openCards array, remove match class.
-  }
+  openCards.forEach(function(card) {
+    card.classList.remove('match');                         // appears to work:  remove match class
+  });
+
+  openCards = [];
 
   console.log('The reset button was clicked');   // TODO: partially works - moves reset to 0 (WORKS!), sec and min set to 0, but not on screen (TIMER)
 //  restoreCard();                                // TODO: attach restore cards function here.
   initGame();                                    // TODO: partially works - cards reset/ icons shuffled. /click event lost/screen not reset fully.
   restoreStars();                                                               // WORKS!! restore stars
-  mainGame();
-  console.log(allCards);
-
+  mainGame();                                       // TODO:  unclear if this funcntion is running.
 });                                                                             // WORKS!  event listener - listens for click on the div restart, // WORKS! : then runs the function initGame().
 
 
@@ -247,6 +245,7 @@ allCards.forEach(function(card){
         match = match + 1 ;                                                      //  Count matches // misclick move count FIXED
         console.log(match);
         if (match === 8){                                                       // WORKS! - at 8 matches proceeds with {}.
+          timerStop();                                     // TODO: appears to work.
           console.log('YOU WON!!');
           //youWon();                        // TODO: change  to function.
         }}
@@ -256,7 +255,7 @@ allCards.forEach(function(card){
       setTimeout(function restoreCard(){
         openCards.forEach(function(card) {
           card.classList.remove('open', 'show');                                // fixed:  bug - will remove single cards
-        });                                                          //  TODO: when cards returned, advance moves by 1.
+        });
 
         openCards = [];
       }, 1000);
@@ -275,7 +274,7 @@ allCards.forEach(function(card){
 function youWon(){
   console.log('you won.');
 
-  wonDialog.showModal();                                   // opens modal window.
+  wonDialog.classList.add('open');                            // TODO:  opens modal window.
 
 // cancel button closes dialog box
 

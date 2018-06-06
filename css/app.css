@@ -42,14 +42,14 @@ h1 {
     width: 660px;
     min-height: 680px;
     background: linear-gradient(160deg, #deepskyblue 0%, #rebeccapurple 100%);
-    padding: 32px;
+    padding: 30px;
     border-radius: 10px;
     /* box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5); */
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    margin: 0 0 3em;
+    margin: 0 0 2em;
 }
 
 .deck .card {
@@ -67,7 +67,7 @@ h1 {
 }
 
 .deck .card.open {
-    transform: rotateY();
+    transform: translateY(rotateY(180));
     background: lavender;   /*** passes AA required contrast. ration 4.5 -This is 13.01****/
     cursor: default;
 }
@@ -88,7 +88,6 @@ h1 {
 
 .score-panel {
     width: 32%;
-    margin-bottom: .5em;
 }
 
 .score-panel .stars {
@@ -112,14 +111,24 @@ h1 {
 }
 
 dialog {
-  background: lightgray;
+  background: aqua;
+  position: absolute;
   animation-name: winner;
-  animation-duration: 15s;
-  height: 25em;
+  animation-duration: 5s;
+  height: 15em;
   width: 25em;
+  text-align: center;
+  z-index: 70;
+  justify-content: center;
+  align-items: center;
+}
+
+dialog li{
+  list-style: none;
+  display: inline-block;
 }
 
 @keyframes winner {
-    from {top: 0; opacity: 1}
-    to {top: 100%; opacity: 5}
+    from {top: 10em}
+    to {top: 100%}
 }

@@ -2,12 +2,17 @@ var moves = 0;                                                                  
 var moveCounter = document.querySelector('.moves');                             // WORKS! define moveCounter variable
 var match = 0;
 var wonDialog = document.querySelector('#wonDialog');             // Seems to work - assign element wonDialog to variable wonDialog.
-var cancelButton = document.querySelector('.modalCancel');    // TODO:  // assign cancel button to  the variable cancelButton. For the modal window.
+var cancelButton = document.querySelector('.modalCancel');                      // WORKS! assign cancel button to  the variable cancelButton. For the modal window.
 var star1 = document.querySelector('.oneStar');                                 // WORKS:                 //  define star1 variable
 var star2 = document.querySelector('.twoStar');                                 // WORKS:                 //  define star2 variable
 var star3 = document.querySelector('.threeStar');                               // WORKS:                 //  define star3 variable
 var mMessage = document.querySelector('.modalMessage');
-var mStars = document.querySelector('modalStars');
+var mStar1 = document.querySelector('.fa1');
+var mStar2 = document.querySelector('.fa2');
+var mStar3 = document.querySelector('.fa3');
+
+
+
 var mTime = document.querySelector('modalTime');
 var mMoves = document.querySelector('modalMoves');
 var mReset = document.querySelector('modalReset');
@@ -56,8 +61,7 @@ document.querySelector('.timer-display').innerHTML = `0${min}:0${sec}`;         
 
 
 function timerStart(){                                                          // WORKS! - this function is called
-  console.log('timer start')
-
+                                                          // TODO: time functioning
   timer = setInterval(insertTime(), 1000);
 }
 
@@ -65,12 +69,11 @@ function timerStop(){                                   // TODO:  call timer sto
   clearInterval(timer);
   sec = 0;
   min = 0;
-  console.log('Timer Stopped.');
 }
 
 function insertTime(){                                  // TODO: get insertTime function to work.
   sec++;
-
+console.log(' The current time in sec is: ' + sec);
   if (sec >= 60){
     min++;
     sec = `00`;
@@ -135,12 +138,9 @@ function initGame() {
   moves = 0;                                                                    // move variable set to zero.
   sec = 0;                                                                      //  sec variable set to zero.
   min = 0;                                                                      //  min variable set to zero.
-  console.log('the move counter is ' + moves);
   advanceMoves();
   timerStart();                                                                 // function WORKS
 
-  console.log('the timer is ' + min + ":" + sec);
-  // timerStart();
   const cardHTML = shuffle(cards).map(function(card){
     return generateCard(card);
   });
@@ -251,7 +251,9 @@ allCards.forEach(function(card){
         openCards[1].classList.add('open');
         openCards[1].classList.add('show');
         match = match + 1 ;                                                     //  Count matches // misclick move count FIXED
-        console.log(match);
+        console.log('the move counter is ' + moves);
+
+        console.log('the timer is ' + min + ":" + sec);
         if (match === 8){                                                       // WORKS! - at 8 matches proceeds with {}.
           timerStop();                            // TODO: appears to work.
           youWon();                                                             // WORKS! change  to function.
@@ -281,30 +283,46 @@ allCards.forEach(function(card){
 function youWon(){
   wonDialog.style.display = "block";                                            // WORKS!  opens modal window.
 
-  function makeStars(){                                            // TODO:  change star counter & add message
+  //******************************************************************************
+    document.querySelector('.modalTime').innerHTML = `${min}:${sec}`;   //appears to work.
+    document.querySelector('.modalMoves').innerHTML = `${moves}`;                 // WORKS!  correct number of moves shown in the modal window.
+  //******************************************************************************
+
+  function makeStars(){                                            // TODO:  change star counter (showing) & add message
   if (moves < 14){
-    mStars.classList.add('fa-star', 'fa-star', 'fa-star');
-    document.querySelector('.modalMessage').innerHTML = `OUTSTANDING!!`;
-  }
-  if (moves === 14){
-    mStars.classList.add('fa-star', 'fa-star', 'fa-star-o');
-    document.querySelector('.modalMessage').innerHTML = `Well Done!`;
-  }
-  if (moves === 17){
-    mStars.classList.add('fa-star', 'fa-star-o', 'fa-star-o');
-    document.querySelector('.modalMessage').innerHTML = `Average`;
-  }
-  if (moves >= 20){
-    mStars.classList.add('fa-star-o', 'fa-star-o', 'fa-star-o');
-    document.querySelector('.modalMessage').innerHTML = `Try Again`;
+    // document.querySelector('.modalMessage').innerText = `OUTSTANDING!!`;
+  } else if (moves === 14){
+    console.log('remove/add one star');
+    mStars3.classList.add('fa-star-o');
+    mStars3.classList.remove('fa-star');
+
+    // document.querySelector('.modalMessage').innerText = `Well Done!`;
+  } else if (moves === 17){
+    console.log('remove/add two stars');
+
+    mStars3.classList.add('fa-star-o');
+    mStars3.classList.remove('fa-star');
+    mStars2.classList.add('fa-star-o');
+    mStars2.classList.remove('fa-star');
+
+    // document.querySelector('.modalMessage').innerText = `Average`;
+  } else if (moves >= 20){
+    console.log('remove/add three stars');
+
+    mStars3.classList.add('fa-star-o');
+    mStars3.classList.remove('fa-star');
+    mStars2.classList.add('fa-star-o');
+    mStars2.classList.remove('fa-star');
+    mStars1.classList.add('fa-star-o');
+    mStars1.classList.remove('fa-star');
+
+    // document.querySelector('.modalMessage').innerText = `Try Again`;
    }
   }
+  console.log(moves);
   makeStars();
 
-//******************************************************************************
-  document.querySelector('.modalTime').innerHTML = `${min}:${sec}`;   //appears to work.
-  document.querySelector('.modalMoves').innerHTML = `${moves}`;                 // WORKS!  correct number of moves shown in the modal window.
-//******************************************************************************
+
 
 
   //

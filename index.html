@@ -38,14 +38,18 @@
   <form method="dialog">
     <section>
       <h1>YOU WON!!</h1>
-        <span></span>   <!-- insert message here -->   <!-- TODO: insert winning message -->
-        <span></span>   <!-- insert STARS here -->     <!-- TODO: insert current star count -->
-        <span>Time:</span>   <!-- insert TIME here -->   <!-- TODO: insert current time -->
-        <span>Moves:</span>  <!-- insert number of moves taken here -->   <!-- TODO: insert current number of moves -->
+        <span class="modalMessage"></span>     <!-- TODO: insert winning message -->
+        <ul>
+          <li><i class="fa fa-star"></i></li>
+          <li><i class="fa fa-star"></i></li>
+          <li><i class="fa fa-star"></i></li>
+        </ul>                                     <!-- TODO: insert current star count -->
+        Moves: <span class="modalMoves"></span>
+        Time:  <span class="modalTime"></span>
     </section>
     <menu>
-      <button id="cancel" type="reset">Cancel</button>          <!-- TODO: attach cancel here -->
-      <button id="playAgain" type="submit">Play Again?</button>  <!-- TODO: hook attach to function initGame()  -->
+      <button class="modalCancel" type="reset">Close Modal</button>
+      <button class="modalReset" type="submit">Play Again?</button>
     </menu>
   </form>
 </dialog>

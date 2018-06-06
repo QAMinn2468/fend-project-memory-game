@@ -2,10 +2,21 @@ var moves = 0;                                                                  
 var moveCounter = document.querySelector('.moves');                             // WORKS! define moveCounter variable
 var match = 0;
 var wonDialog = document.querySelector('#wonDialog');             // Seems to work - assign element wonDialog to variable wonDialog.
-var cancelButton = document.querySelector('cancel');    // TODO:  // assign cancel button to  the variable cancelButton. For the modal window.
+var cancelButton = document.querySelector('.modalCancel');    // TODO:  // assign cancel button to  the variable cancelButton. For the modal window.
 var star1 = document.querySelector('.oneStar');                                 // WORKS:                 //  define star1 variable
 var star2 = document.querySelector('.twoStar');                                 // WORKS:                 //  define star2 variable
 var star3 = document.querySelector('.threeStar');                               // WORKS:                 //  define star3 variable
+var mMessage = document.querySelector('.modalMessage');
+var mStars = document.querySelector('modalStars');
+var mTime = document.querySelector('modalTime');
+var mMoves = document.querySelector('modalMoves');
+var mReset = document.querySelector('modalReset');
+
+
+
+
+
+
 
 /************************************************
  * Create a list that holds all of your cards                  *Watched video via Udacity - Mike Wales*
@@ -54,7 +65,7 @@ function timerStop(){                                   // TODO:  call timer sto
   clearInterval(timer);
   sec = 0;
   min = 0;
-  console.log('Timer Stopped.')
+  console.log('Timer Stopped.');
 }
 
 function insertTime(){                                  // TODO: get insertTime function to work.
@@ -242,9 +253,8 @@ allCards.forEach(function(card){
         match = match + 1 ;                                                     //  Count matches // misclick move count FIXED
         console.log(match);
         if (match === 8){                                                       // WORKS! - at 8 matches proceeds with {}.
-          timerStop();                                     // TODO: appears to work.
-          console.log('YOU WON!!');
-          youWon();                        // TODO: change  to function.
+          timerStop();                            // TODO: appears to work.
+          youWon();                                                             // WORKS! change  to function.
         }}
 
 //if cards don't match - go away!
@@ -267,15 +277,47 @@ allCards.forEach(function(card){
                                       "You Won" Modal Window (based on MDN <dialog> page)
 
 *************************************************************************************************************************************/
-                                                              // TODO: set up youWon function.  open modal window.
+                                                                                // WORKS! set up youWon function.  open modal window.
 function youWon(){
-  console.log('you won.');                                                      // WORKS! Function is called!
+  wonDialog.style.display = "block";                                            // WORKS!  opens modal window.
 
-  wonDialog.style.display = "block";                            // TODO:  opens modal window.
+  function makeStars(){                                            // TODO:  change star counter & add message
+  if (moves < 14){
+    mStars.classList.add('fa-star', 'fa-star', 'fa-star');
+    document.querySelector('.modalMessage').innerHTML = `OUTSTANDING!!`;
+  }
+  if (moves === 14){
+    mStars.classList.add('fa-star', 'fa-star', 'fa-star-o');
+    document.querySelector('.modalMessage').innerHTML = `Well Done!`;
+  }
+  if (moves === 17){
+    mStars.classList.add('fa-star', 'fa-star-o', 'fa-star-o');
+    document.querySelector('.modalMessage').innerHTML = `Average`;
+  }
+  if (moves >= 20){
+    mStars.classList.add('fa-star-o', 'fa-star-o', 'fa-star-o');
+    document.querySelector('.modalMessage').innerHTML = `Try Again`;
+   }
+  }
+  makeStars();
 
-// cancel button closes dialog box
+//******************************************************************************
+  document.querySelector('.modalTime').innerHTML = `${min}:${sec}`;   //appears to work.
+  document.querySelector('.modalMoves').innerHTML = `${moves}`;                 // WORKS!  correct number of moves shown in the modal window.
+//******************************************************************************
 
-// cancelButton.addEventListener('click', function(){        // attaches click of cancel button to closing the modal window.
-//   wonDialog.close();
-// });
+
+  //
+  // mReset.addEventListener('click', function(){                                  // WORKS! attaches click of reset button to reset the game.
+  //   wonDialog.style.display = "none";
+  //
+  // });
+
+
+
+// ******* cancel button closes dialog box**************************************
+
+cancelButton.addEventListener('click', function(){                              // WORKS! attaches click of close button to closing the modal window.
+  wonDialog.style.display = "none";
+});
 }

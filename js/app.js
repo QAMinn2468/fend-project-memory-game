@@ -1,9 +1,9 @@
 var moves = 0;                                                                  // WORKS!  DO NOT CHANGE
-var moveCounter = document.querySelector('.moves');                             //  WORKS! define moveCounter variable
+var moveCounter = document.querySelector('.moves');                             // WORKS! define moveCounter variable
 var match = 0;
-var wonDialog = document.querySelector('#wonDialog');                            // Seems to work - assign element wonDialog to variable wonDialog.
+var wonDialog = document.querySelector('#wonDialog');             // Seems to work - assign element wonDialog to variable wonDialog.
 var cancelButton = document.querySelector('cancel');    // TODO:  // assign cancel button to  the variable cancelButton. For the modal window.
-var star1 = document.querySelector('.oneStar');                                 // WORKS!:                 //  define star1 variable
+var star1 = document.querySelector('.oneStar');                                 // WORKS:                 //  define star1 variable
 var star2 = document.querySelector('.twoStar');                                 // WORKS:                 //  define star2 variable
 var star3 = document.querySelector('.threeStar');                               // WORKS:                 //  define star3 variable
 
@@ -41,7 +41,7 @@ let timer;
 
 // displays the timer
 
-document.querySelector('.timer-display').innerHTML = `0${min}:0${sec}`;          //  WORKS! - Initial value for Min and Sec is displayed.
+document.querySelector('.timer-display').innerHTML = `0${min}:0${sec}`;         //  WORKS! - Initial value for Min and Sec is displayed.
 
 
 function timerStart(){                                                          // WORKS! - this function is called
@@ -50,7 +50,7 @@ function timerStart(){                                                          
   timer = setInterval(insertTime(), 1000);
 }
 
-function timerStop(){                                     // // TODO:  call timer stop - WORKS! - this function is called.
+function timerStop(){                                   // TODO:  call timer stop - WORKS! - this function is called.
   clearInterval(timer);
   sec = 0;
   min = 0;
@@ -151,10 +151,10 @@ restart.addEventListener('click', function(){
   openCards = [];
 
   console.log('The reset button was clicked');   // TODO: partially works - moves reset to 0 (WORKS!), sec and min set to 0, but not on screen (TIMER)
-//  restoreCard();                                // TODO: attach restore cards function here.
+//  restoreCard();                               // TODO: attach restore cards function here.
   initGame();                                    // TODO: partially works - cards reset/ icons shuffled. /click event lost/screen not reset fully.
   restoreStars();                                                               // WORKS!! restore stars
-  mainGame();                                       // TODO:  unclear if this funcntion is running.
+  mainGame();                                    // TODO:  unclear if this funcntion is running.
 });                                                                             // WORKS!  event listener - listens for click on the div restart, // WORKS! : then runs the function initGame().
 
 
@@ -168,15 +168,15 @@ var openCards = [];                                                             
 ******************************************************************************************/
 
 function advanceMoves(){
-  moveCounter.innerText = `${moves}`;                                             //WORKS! move to correct location.  DONE
-  advanceStars();                                                               // function WORKS
-}
+  moveCounter.innerText = `${moves}`;                                           // WORKS! move to correct location.  DONE
+  advanceStars();                                                               // WORKS!  function
+ }
 /*********************************************************************************************************************************
 
                                                 STAR COUNTER
 
 *******************************************************************************************************************************************/
-function advanceStars(){                                                        // WORKS!! change star counter
+function advanceStars(){                                                        // WORKS! change star counter
 if (moves === 14){
   console.log('minus one star');
 
@@ -211,25 +211,22 @@ function restoreStars(){                                                        
 
                                    MAIN FUNCTION
 
-*******************************************************************************************************************************************/
+***********************************************************************************************************************************/
 mainGame();
 function mainGame(){
 
 allCards.forEach(function(card){
   card.addEventListener('click', function(e){                                   //  WORKS!  Captures click event
-    console.log('clickAnywhere');
     if ((openCards.length < 2) && (!card.classList.contains('open') && !card.classList.contains('show') && !card.classList.contains('match'))) {     // if clicked card is revealed or matched, ignore click.
                                                                                 // FIXED:  remove misclick  (related to triple fast click?)
-  console.log('clickHere');
       openCards.push(card);                                                     //  WORKS!  card is added to openCards array.
       card.classList.add('open', 'show');                                       //  WORKS!  Reveals cards by adding classes "open" and "show"
 
 // Check of they matched
     if (openCards.length === 2) {                                               // WORKS! fixed:  Two cards only revealed. //  fixed bug: 2 clicks on same card.
        moves++;                                                                 // WORKS!  move variable increase by 1.
-       console.log('This is move number ' + moves);  // verify DONE! current status of move variable.
 
-       /*******************************************************************************************************************************************************************************
+       /*****************************************************************************************************************************
                                          MoveCounter
        ******************************************************************************************************************************/
         advanceMoves();
@@ -242,12 +239,12 @@ allCards.forEach(function(card){
         openCards[1].classList.add('match');
         openCards[1].classList.add('open');
         openCards[1].classList.add('show');
-        match = match + 1 ;                                                      //  Count matches // misclick move count FIXED
+        match = match + 1 ;                                                     //  Count matches // misclick move count FIXED
         console.log(match);
         if (match === 8){                                                       // WORKS! - at 8 matches proceeds with {}.
           timerStop();                                     // TODO: appears to work.
           console.log('YOU WON!!');
-          //youWon();                        // TODO: change  to function.
+          youWon();                        // TODO: change  to function.
         }}
 
 //if cards don't match - go away!
@@ -267,14 +264,14 @@ allCards.forEach(function(card){
 }
 /*************************************************************************************************************************************
 
-                                      You Won Modal Window (based on MDN <dialog> page)
+                                      "You Won" Modal Window (based on MDN <dialog> page)
 
 *************************************************************************************************************************************/
-                                                                // TODO: set up youWon function.  open modal window.
+                                                              // TODO: set up youWon function.  open modal window.
 function youWon(){
-  console.log('you won.');
+  console.log('you won.');                                                      // WORKS! Function is called!
 
-  wonDialog.classList.add('open');                            // TODO:  opens modal window.
+  wonDialog.style.display = "block";                            // TODO:  opens modal window.
 
 // cancel button closes dialog box
 

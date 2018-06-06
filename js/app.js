@@ -251,9 +251,7 @@ allCards.forEach(function(card){
         openCards[1].classList.add('open');
         openCards[1].classList.add('show');
         match = match + 1 ;                                                     //  Count matches // misclick move count FIXED
-        console.log('the move counter is ' + moves);
 
-        console.log('the timer is ' + min + ":" + sec);
         if (match === 8){                                                       // WORKS! - at 8 matches proceeds with {}.
           timerStop();                            // TODO: appears to work.
           youWon();                                                             // WORKS! change  to function.
@@ -288,37 +286,38 @@ function youWon(){
     document.querySelector('.modalMoves').innerHTML = `${moves}`;                 // WORKS!  correct number of moves shown in the modal window.
   //******************************************************************************
 
-  function makeStars(){                                            // TODO:  change star counter (showing) & add message
-  if (moves < 14){
-    // document.querySelector('.modalMessage').innerText = `OUTSTANDING!!`;
-  } else if (moves === 14){
-    console.log('remove/add one star');
-    mStars3.classList.add('fa-star-o');
-    mStars3.classList.remove('fa-star');
+  function makeStars(){
 
-    // document.querySelector('.modalMessage').innerText = `Well Done!`;
-  } else if (moves === 17){
-    console.log('remove/add two stars');
+  if (moves <14){                                                               // WORKS! change star counter to correct stars!!!!
+    console.log('three stars');
 
-    mStars3.classList.add('fa-star-o');
-    mStars3.classList.remove('fa-star');
-    mStars2.classList.add('fa-star-o');
-    mStars2.classList.remove('fa-star');
+  } else if ( moves < 17){
+    console.log('minus one star');
 
-    // document.querySelector('.modalMessage').innerText = `Average`;
+    mStar3.classList.remove('fa-star');
+    mStar3.classList.add('fa-star-o');
+
+  } else if (moves < 20 ){
+    console.log('minus two star');
+
+    mStar3.classList.remove('fa-star');
+    mStar3.classList.add('fa-star-o');
+    mStar2.classList.remove('fa-star');
+    mStar2.classList.add('fa-star-o');
+
   } else if (moves >= 20){
-    console.log('remove/add three stars');
+    console.log('minus three star');
 
-    mStars3.classList.add('fa-star-o');
-    mStars3.classList.remove('fa-star');
-    mStars2.classList.add('fa-star-o');
-    mStars2.classList.remove('fa-star');
-    mStars1.classList.add('fa-star-o');
-    mStars1.classList.remove('fa-star');
+    mStar3.classList.remove('fa-star');
+    mStar3.classList.add('fa-star-o');
+    mStar2.classList.remove('fa-star');
+    mStar2.classList.add('fa-star-o');
+    mStar1.classList.remove('fa-star');
+    mStar1.classList.add('fa-star-o');
 
-    // document.querySelector('.modalMessage').innerText = `Try Again`;
    }
   }
+
   console.log(moves);
   makeStars();
 

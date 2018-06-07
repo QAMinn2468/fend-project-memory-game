@@ -109,7 +109,7 @@ h1 {
 }
 
 dialog {
-  background: mediumaquamarine;    /*** passes AA required contrast. ration 4.5 -This is 16.74****/
+  background: #CCCCFF;    /*** passes AA required contrast. ration 4.5 -This is 13.65 ****/
   position: absolute;
   animation-name: winner;
   animation-duration: 5s;

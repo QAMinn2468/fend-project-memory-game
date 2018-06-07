@@ -57,29 +57,29 @@ let timer;
 
 // displays the timer
 
-document.querySelector('.timer-display').innerHTML = `0${min}:0${sec}`;         //  WORKS! - Initial value for Min and Sec is displayed.
 
 
 function timerStart(){                                                          // WORKS! - this function is called
-                                                          // TODO: time functioning
-  timer = setInterval(insertTime(), 1000);
+
+  timer = setInterval(function(){
+    document.querySelector('.timer-display').innerHTML = `${min}:${sec}`;         //  WORKS! - Initial value for Min and Sec is displayed.
+
+      // sec++;
+      //     console.log(' The current time in sec is: ' + sec);
+    if (sec = 60){
+      min++;
+      sec = `00`;
+      console.log('the current min is: ' + min)
+    }
+  }, 1000);
 }
 
-function timerStop(){                                   // TODO:  call timer stop - WORKS! - this function is called.
+function timerStop(){                                                           // WORKS!!  call timer stop - WORKS! - this function is called.
+  document.querySelector('.timer-display').innerHTML = `${min}:${sec}`;
+
   clearInterval(timer);
-  sec = 0;
-  min = 0;
-}
 
-function insertTime(){                                  // TODO: get insertTime function to work.
-  sec++;
-console.log(' The current time in sec is: ' + sec);
-  if (sec >= 60){
-    min++;
-    sec = `00`;
-  }
 }
-
 
 
 // Shuffle function from http://stackoverflow.com/a/2450976

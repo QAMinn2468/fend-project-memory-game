@@ -1,31 +1,27 @@
 var moves = 0;                                                                  // WORKS!  DO NOT CHANGE
 var moveCounter = document.querySelector('.moves');                             // WORKS! define moveCounter variable
 var match = 0;
-var wonDialog = document.querySelector('#wonDialog');             // Seems to work - assign element wonDialog to variable wonDialog.
+
+var wonDialog = document.querySelector('#wonDialog');                           // WORKS!  assign element wonDialog to variable wonDialog.
 var cancelButton = document.querySelector('.modalCancel');                      // WORKS! assign cancel button to  the variable cancelButton. For the modal window.
+
 var star1 = document.querySelector('.oneStar');                                 // WORKS:                 //  define star1 variable
 var star2 = document.querySelector('.twoStar');                                 // WORKS:                 //  define star2 variable
 var star3 = document.querySelector('.threeStar');                               // WORKS:                 //  define star3 variable
-var mMessage = document.querySelector('.modalMessage');
+
 var mStar1 = document.querySelector('.fa1');
 var mStar2 = document.querySelector('.fa2');
 var mStar3 = document.querySelector('.fa3');
 
+var mTime = document.querySelector('.modalTime');
+var mMoves = document.querySelector('.modalMoves');
+var mReset = document.querySelector('.modalReset');                             // WORKS!
+var cancelButton = document.querySelector('.modalCancel');                      // WORKS!
 
 
-var mTime = document.querySelector('modalTime');
-var mMoves = document.querySelector('modalMoves');
-var mReset = document.querySelector('modalReset');
-
-
-
-
-
-
-
-/************************************************
- * Create a list that holds all of your cards                  *Watched video via Udacity - Mike Wales*
- ************************************************/
+/*******************************************************************************
+ * Create a list that holds all of your cards
+ *******************************************************************************/
 const cards = ['fa-umbrella', 'fa-umbrella',                                    // WORKS!  Holds icons for function
                'fa-paw', 'fa-paw',
                'fa-anchor', 'fa-anchor',                                        // WORKS!  New icons.
@@ -34,7 +30,6 @@ const cards = ['fa-umbrella', 'fa-umbrella',                                    
                'fa-tree', 'fa-tree',
                'fa-plane', 'fa-plane',
                'fa-flask', 'fa-flask']
-
 
 function generateCard(card) {
   return `<li class="card" data-card= ${card}><i class="fa ${card}"></i>`       // WORKS!!  card is a variable not a string.
@@ -47,38 +42,26 @@ function generateCard(card) {
  *   - add each card's HTML to the page
  */
 
-
-/*************************************************************************************
+/*******************************************************************************
            timer  (based on Slack @Chris N [FEND])
-*************************************************************************************/
+*******************************************************************************/
 let sec = 0;
-
 let timer;
 
-// displays the timer
-
-
-
 function timerStart(){                                                          // WORKS! - this function is called
-
   timer = setInterval(function(){
     document.querySelector('.timer-display').innerHTML = `${sec}`;              //  WORKS! - Sec is displayed.
-
       sec++;
-    console.log(' The current time in sec is: ' + sec);
-
-  }, 1000);
+    }, 1000);
 }
 
 function timerStop(){                                                           // WORKS!!  call timer stop - WORKS! - this function is called.
   document.querySelector('.timer-display').innerHTML = `${sec}`;
-
   clearInterval(timer);
-
 }
 
 
-// Shuffle function from http://stackoverflow.com/a/2450976
+// ******Shuffle function from http://stackoverflow.com/a/2450976***************
 function shuffle(array) {                                                       //  WORKS!! - Shuffles icons.
     let currentIndex = array.length, temporaryValue, randomIndex;
 
@@ -93,7 +76,6 @@ function shuffle(array) {                                                       
     return array;
 }
 
-
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
@@ -105,8 +87,7 @@ function shuffle(array) {                                                       
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 
-
- /************************************************************
+ /******************************************************************************
 After collecting play test data for 4 players over 12 games,
 the minimum clicks was 23, the maximum clicks was 46,
 the average was 34 clicks, the mean was 35.
@@ -115,7 +96,7 @@ the average was 34 clicks, the mean was 35.
 This data was used to create the scoring table listed below.
 
 constsider storing "ALL TIME BEST SCORE = 23, PKM/MLM"
----------------------------------------------------------------
+--------------------------------------------------------------------------------
 
     Scoring notes:
 
@@ -124,11 +105,11 @@ constsider storing "ALL TIME BEST SCORE = 23, PKM/MLM"
     *    = 36 - 40 clicks   - Average       (20 moves)
     three empty stars     = 41 clicks and over - Not bad.
 
-/*********************************************************************************************
+/*******************************************************************************
 
                 initialize Game
 
-*********************************************************************************************/
+*******************************************************************************/
 function initGame() {
   const deck = document.querySelector('.deck');
   moves = 0;                                                                    // move variable set to zero.
@@ -144,23 +125,19 @@ function initGame() {
 
 initGame();
 
-/*************************************************************************************************
+/*******************************************************************************
                  RESTART FUNCTION
-**************************************************************************************************/
+*******************************************************************************/
 const restart = document.querySelector('.restart');                             // WORKS!  assign restart class to restart variable.
 
-restart.addEventListener('click', function(){
+restart.addEventListener('click', function restoreClass(){
   openCards.forEach(function(card) {
     card.classList.remove('match');                         // appears to work:  remove match class
   });
 
   openCards = [];
-
-  console.log('The reset button was clicked');   // TODO: partially works - moves reset to 0 (WORKS!), sec and min set to 0, but not on screen (TIMER)
-//  restoreCard();                               // TODO: attach restore cards function here.
-  initGame();                                    // TODO: partially works - cards reset/ icons shuffled. /click event lost/screen not reset fully.
   restoreStars();                                                               // WORKS!! restore stars
-  mainGame();                                    // TODO:  unclear if this funcntion is running.
+  initGame();                                    // TODO: partially works - cards reset/ icons shuffled. /click event lost/screen not reset fully.
 });                                                                             // WORKS!  event listener - listens for click on the div restart, // WORKS! : then runs the function initGame().
 
 
@@ -168,40 +145,32 @@ restart.addEventListener('click', function(){
 const allCards = document.querySelectorAll('.card');                            // creates the variable for all the cards   DO NOT MOVE!!
 var openCards = [];                                                             //  Array clear at start. origin of openCard.length  DO NOT MOVE!!
 
-/***************************************************************************************
+/*******************************************************************************
                ADVANCE MOVE COUNTER
 
-******************************************************************************************/
+*******************************************************************************/
 
 function advanceMoves(){
   moveCounter.innerText = `${moves}`;                                           // WORKS! move to correct location.  DONE
   advanceStars();                                                               // WORKS!  function
  }
-/*********************************************************************************************************************************
+/*******************************************************************************
 
                                                 STAR COUNTER
 
-*******************************************************************************************************************************************/
+*******************************************************************************/
 function advanceStars(){                                                        // WORKS! change star counter
 if (moves === 14){
-  console.log('minus one star');
-
   star3.classList.remove('fa-star');
   star3.classList.add('fa-star-o');
  }
  if (moves === 17){
-  console.log('minus two star');
-
   star2.classList.remove('fa-star');
   star2.classList.add('fa-star-o');
-
   }
   if (moves === 20){
-  console.log('minus three star');
-
   star1.classList.remove('fa-star');
   star1.classList.add('fa-star-o');
-
  }
 }
 
@@ -213,11 +182,11 @@ function restoreStars(){                                                        
   star3.classList.remove('fa-star-o');
   star3.classList.add('fa-star');
 }
-/******************************************************************************************************************************************
+/*******************************************************************************
 
                                    MAIN FUNCTION
 
-***********************************************************************************************************************************/
+*******************************************************************************/
 mainGame();
 function mainGame(){
 
@@ -232,9 +201,9 @@ allCards.forEach(function(card){
     if (openCards.length === 2) {                                               // WORKS! fixed:  Two cards only revealed. //  fixed bug: 2 clicks on same card.
        moves++;                                                                 // WORKS!  move variable increase by 1.
 
-/*****************************************************************************************************************************
+/*******************************************************************************
                                          MoveCounter
-******************************************************************************************************************************/
+*******************************************************************************/
         advanceMoves();
 
 
@@ -248,11 +217,11 @@ allCards.forEach(function(card){
         match = match + 1 ;                                                     //  Count matches // misclick move count FIXED
 
         if (match === 8){                                                       // WORKS! - at 8 matches proceeds with {}.
-          timerStop();                            // TODO: appears to work.
+          timerStop();                                                          // WORKS! appears to work.
           youWon();                                                             // WORKS! change  to function.
         }}
 
-//if cards don't match - go away!
+//*********Restore unmatched cards**********************************************
 
       setTimeout(function restoreCard(){
         openCards.forEach(function(card) {
@@ -267,11 +236,11 @@ allCards.forEach(function(card){
 });
 });
 }
-/*************************************************************************************************************************************
+/*******************************************************************************
 
-                                      "You Won" Modal Window (based on MDN <dialog> page)
+                     "You Won" Modal Window
 
-*************************************************************************************************************************************/
+*******************************************************************************/
                                                                                 // WORKS! set up youWon function.  open modal window.
 function youWon(){
   wonDialog.style.display = "block";                                            // WORKS!  opens modal window.
@@ -284,52 +253,44 @@ function youWon(){
   function makeStars(){
 
   if (moves <14){                                                               // WORKS! change star counter to correct stars!
-    console.log('three stars');
-
   } else if ( moves < 17){
-    console.log('minus one star');
-
     mStar3.classList.remove('fa-star');
     mStar3.classList.add('fa-star-o');
 
   } else if (moves < 20 ){
-    console.log('minus two star');
-
     mStar3.classList.remove('fa-star');
     mStar3.classList.add('fa-star-o');
     mStar2.classList.remove('fa-star');
     mStar2.classList.add('fa-star-o');
 
   } else if (moves >= 20){
-    console.log('minus three star');
-
     mStar3.classList.remove('fa-star');
     mStar3.classList.add('fa-star-o');
     mStar2.classList.remove('fa-star');
     mStar2.classList.add('fa-star-o');
     mStar1.classList.remove('fa-star');
     mStar1.classList.add('fa-star-o');
-
    }
   }
 
-  console.log(moves);
   makeStars();
+/*******************************************************************************
+                MODAL BUTTONS
+*******************************************************************************/
 
-
-
-
-  
-  mReset.addEventListener('click', function(){                                  // WORKS! attaches click of reset button to reset the game.
+  mReset.addEventListener('click', function restoreClass(){                       // WORKS! attaches click of reset button to reset the game.
     wonDialog.style.display = "none";
 
+    openCards.forEach(function(card) {
+      card.classList.remove('match');
+    });
+
+    openCards = [];
+    restoreStars();
+    initGame();                                    // TODO: partially works - cards reset/ icons shuffled. /click event lost/screen not reset fully.
   });
 
-
-
-// ******* cancel button closes dialog box**************************************
-
-cancelButton.addEventListener('click', function(){                              // WORKS! attaches click of close button to closing the modal window.
-  wonDialog.style.display = "none";
+  cancelButton.addEventListener('click', function(){                            // WORKS! attaches click of close button to closing the modal window.
+    wonDialog.style.display = "none";
 });
 }

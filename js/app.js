@@ -52,7 +52,7 @@ function generateCard(card) {
            timer  (based on Slack @Chris N [FEND])
 *************************************************************************************/
 let sec = 0;
-let min = 0;
+
 let timer;
 
 // displays the timer
@@ -62,20 +62,16 @@ let timer;
 function timerStart(){                                                          // WORKS! - this function is called
 
   timer = setInterval(function(){
-    document.querySelector('.timer-display').innerHTML = `${min}:${sec}`;         //  WORKS! - Initial value for Min and Sec is displayed.
+    document.querySelector('.timer-display').innerHTML = `${sec}`;              //  WORKS! - Sec is displayed.
 
-      // sec++;
-      //     console.log(' The current time in sec is: ' + sec);
-    if (sec = 60){
-      min++;
-      sec = `00`;
-      console.log('the current min is: ' + min)
-    }
+      sec++;
+    console.log(' The current time in sec is: ' + sec);
+
   }, 1000);
 }
 
 function timerStop(){                                                           // WORKS!!  call timer stop - WORKS! - this function is called.
-  document.querySelector('.timer-display').innerHTML = `${min}:${sec}`;
+  document.querySelector('.timer-display').innerHTML = `${sec}`;
 
   clearInterval(timer);
 
@@ -137,7 +133,6 @@ function initGame() {
   const deck = document.querySelector('.deck');
   moves = 0;                                                                    // move variable set to zero.
   sec = 0;                                                                      //  sec variable set to zero.
-  min = 0;                                                                      //  min variable set to zero.
   advanceMoves();
   timerStart();                                                                 // function WORKS
 
@@ -237,9 +232,9 @@ allCards.forEach(function(card){
     if (openCards.length === 2) {                                               // WORKS! fixed:  Two cards only revealed. //  fixed bug: 2 clicks on same card.
        moves++;                                                                 // WORKS!  move variable increase by 1.
 
-       /*****************************************************************************************************************************
+/*****************************************************************************************************************************
                                          MoveCounter
-       ******************************************************************************************************************************/
+******************************************************************************************************************************/
         advanceMoves();
 
 
@@ -282,13 +277,13 @@ function youWon(){
   wonDialog.style.display = "block";                                            // WORKS!  opens modal window.
 
   //******************************************************************************
-    document.querySelector('.modalTime').innerHTML = `${min}:${sec}`;   //appears to work.
-    document.querySelector('.modalMoves').innerHTML = `${moves}`;                 // WORKS!  correct number of moves shown in the modal window.
+    document.querySelector('.modalTime').innerHTML = `${sec}`;                  // WORKS!  appears to work.
+    document.querySelector('.modalMoves').innerHTML = `${moves}`;               // WORKS!  correct number of moves shown in the modal window.
   //******************************************************************************
 
   function makeStars(){
 
-  if (moves <14){                                                               // WORKS! change star counter to correct stars!!!!
+  if (moves <14){                                                               // WORKS! change star counter to correct stars!
     console.log('three stars');
 
   } else if ( moves < 17){
@@ -324,11 +319,11 @@ function youWon(){
 
 
 
-  //
-  // mReset.addEventListener('click', function(){                                  // WORKS! attaches click of reset button to reset the game.
-  //   wonDialog.style.display = "none";
-  //
-  // });
+  
+  mReset.addEventListener('click', function(){                                  // WORKS! attaches click of reset button to reset the game.
+    wonDialog.style.display = "none";
+
+  });
 
 
 

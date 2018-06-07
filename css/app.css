@@ -123,6 +123,10 @@ dialog {
   align-items: center;
 }
 
+dialog ul {
+  padding: 0;
+}
+
 dialog li{
   list-style: none;
   display: inline-block;

@@ -17,7 +17,7 @@ body {
 
 body {
     background: #ffffff url('../img/Blue-2.jpg');     /* Background pattern from - Pixabay */
-    font-family: 'Alfa Slab One', cursive;            /* Changed font - Google Fonts */
+    font-family: 'Alfa Slab One', cursive;            /* Font - Google Fonts */
   }
 
 .container {
@@ -29,10 +29,14 @@ body {
 }
 
 h1 {
-    font-family: 'Alfa Slab One', cursive;            /* Changed font - Google Fonts */
+    font-family: 'Alfa Slab One', cursive;            /* Font - Google Fonts */
     font-weight: 300;
 }
 
+p {
+  padding: 0;
+  margin: 0;
+}
 /*
  * Styles for the deck of cards
  */
@@ -63,7 +67,7 @@ h1 {
 }
 
 .deck .card.open {
-    background: lavender;   /*** passes AA required contrast. ration 4.5 -This is 13.01****/
+    background: lavender;       /*** passes AA required contrast. ration 4.5 -This is 13.01****/
     cursor: default;
 }
 

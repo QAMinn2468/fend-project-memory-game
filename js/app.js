@@ -287,7 +287,7 @@ function youWon(){
 
     openCards = [];
     restoreStars();
-    initGame();                                    // TODO: partially works - cards reset/ icons shuffled. /click event lost/screen not reset fully.
+    initGame();                                    // TODO: partial function - works as well as the main reset button.
   });
 
   cancelButton.addEventListener('click', function(){                            // WORKS! attaches click of close button to closing the modal window.

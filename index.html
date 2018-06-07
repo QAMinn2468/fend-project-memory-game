@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -21,33 +21,36 @@
             <li><i class="fa fa-star twoStar"></i></li>
             <li><i class="fa fa-star threeStar"></i></li>
           </ul>
-          Timer: <span class="timer-display"></span>
+          Seconds: <span class="timer-display"></span>
             <div class="restart">
         		<i class="fa fa-repeat"></i>
         	</div>
         </section>
         <ul class="deck"></ul>
     </div>
-
-    <!--   Modal Window / Dialog Box ------------------------------------->
+    <p>
+        <a href="http://jigsaw.w3.org/css-validator/check/referer">
+            <img style="border:0;width:88px;height:31px"
+                src="http://jigsaw.w3.org/css-validator/images/vcss"
+                alt="Valid CSS!" />
+        </a>
+    </p>
 
 <dialog id="wonDialog">
   <form method="dialog">
     <section>
       <h1>YOU WON!!</h1>
-        <span class="modalMessage"></span>     <!-- TODO: insert winning message -->
         <ul>
           <li><i class="fa fa1 fa-star"></i></li>
           <li><i class="fa fa2 fa-star"></i></li>
           <li><i class="fa fa3 fa-star"></i></li>
         </ul>
         Moves: <span class="modalMoves"></span>
+        </br>
         Your time in seconds:  <span class="modalTime"></span>
     </section>
-    <menu>
       <button class="modalCancel" type="reset">Close Modal</button>
       <button class="modalReset" type="submit">Play Again</button>
-    </menu>
   </form>
 </dialog>
 

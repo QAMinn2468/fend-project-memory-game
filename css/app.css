@@ -40,10 +40,8 @@ h1 {
 .deck {
     width: 660px;
     min-height: 680px;
-    background: linear-gradient(160deg, #deepskyblue 0%, #rebeccapurple 100%);
     padding: 25px;
     border-radius: 10px;
-    /* box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5); */
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -65,7 +63,6 @@ h1 {
 }
 
 .deck .card.open {
-    transform: translateY(rotateY(180));
     background: lavender;   /*** passes AA required contrast. ration 4.5 -This is 13.01****/
     cursor: default;
 }
@@ -92,7 +89,6 @@ h1 {
     margin: 0;
     padding: 0;
     display: inline-block;
-    margin: 0 1.8em 0 1.8em;
     color: rebeccapurple;
 }
 
@@ -115,7 +111,7 @@ dialog {
   animation-duration: 5s;
   animation-timing-function: linear;
   top: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%);
   height: 15em;
   width: 25em;
   text-align: center;

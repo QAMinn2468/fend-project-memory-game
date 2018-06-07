@@ -43,13 +43,13 @@ function generateCard(card) {
  */
 
 /*******************************************************************************
-           timer  (based on Slack @Chris N [FEND])
+                           TIMER
 *******************************************************************************/
 let sec = 0;
 let timer;
 
 function timerStart(){                                                          // WORKS! - this function is called
-  timer = setInterval(function(){
+  timer = setInterval(function(){                                               // BUG - timer 'limps' after reeset
     document.querySelector('.timer-display').innerHTML = `${sec}`;              //  WORKS! - Sec is displayed.
       sec++;
     }, 1000);
@@ -61,7 +61,7 @@ function timerStop(){                                                           
 }
 
 
-// ******Shuffle function from http://stackoverflow.com/a/2450976***************
+// **********************SHUFFLE  FUNCTION**************************************
 function shuffle(array) {                                                       //  WORKS!! - Shuffles icons.
     let currentIndex = array.length, temporaryValue, randomIndex;
 
@@ -95,7 +95,7 @@ the average was 34 clicks, the mean was 35.
 
 This data was used to create the scoring table listed below.
 
-constsider storing "ALL TIME BEST SCORE = 23, PKM/MLM"
+@@@@@@@@@@@-Best playtest score was 12 moves PKM-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 --------------------------------------------------------------------------------
 
     Scoring notes:
@@ -132,12 +132,12 @@ const restart = document.querySelector('.restart');                             
 
 restart.addEventListener('click', function restoreClass(){
   openCards.forEach(function(card) {
-    card.classList.remove('match');                         // appears to work:  remove match class
+    card.classList.remove('match');                                             // WORKS!  match class is removed.
   });
 
   openCards = [];
   restoreStars();                                                               // WORKS!! restore stars
-  initGame();                                    // TODO: partially works - cards reset/ icons shuffled. /click event lost/screen not reset fully.
+  initGame();                                                                   // WORKS! cards reset/ icons shuffled. /BUG - click event lost
 });                                                                             // WORKS!  event listener - listens for click on the div restart, // WORKS! : then runs the function initGame().
 
 
@@ -146,7 +146,7 @@ const allCards = document.querySelectorAll('.card');                            
 var openCards = [];                                                             //  Array clear at start. origin of openCard.length  DO NOT MOVE!!
 
 /*******************************************************************************
-               ADVANCE MOVE COUNTER
+                            ADVANCE MOVE COUNTER
 
 *******************************************************************************/
 
@@ -156,7 +156,7 @@ function advanceMoves(){
  }
 /*******************************************************************************
 
-                                                STAR COUNTER
+                                STAR COUNTER
 
 *******************************************************************************/
 function advanceStars(){                                                        // WORKS! change star counter
@@ -184,7 +184,7 @@ function restoreStars(){                                                        
 }
 /*******************************************************************************
 
-                                   MAIN FUNCTION
+                             MAIN FUNCTION
 
 *******************************************************************************/
 mainGame();
@@ -202,7 +202,7 @@ allCards.forEach(function(card){
        moves++;                                                                 // WORKS!  move variable increase by 1.
 
 /*******************************************************************************
-                                         MoveCounter
+                               MOVE COUNTER
 *******************************************************************************/
         advanceMoves();
 

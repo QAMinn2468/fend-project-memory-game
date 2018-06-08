@@ -1,22 +1,21 @@
-var moves = 0;                                                                  // WORKS!  DO NOT CHANGE
-var moveCounter = document.querySelector('.moves');                             // WORKS! define moveCounter variable
-var match = 0;
+let moves = 0;                                                                  // WORKS!  DO NOT CHANGE
+const moveCounter = document.querySelector('.moves');                             // WORKS! define moveCounter variable
+let match = 0;
 
-var wonDialog = document.querySelector('#wonDialog');                           // WORKS!  assign element wonDialog to variable wonDialog.
-var cancelButton = document.querySelector('.modalCancel');                      // WORKS! assign cancel button to  the variable cancelButton. For the modal window.
+const wonDialog = document.querySelector('#wonDialog');                           // WORKS!  assign element wonDialog to variable wonDialog.
+const cancelButton = document.querySelector('.modalCancel');                      // WORKS! assign cancel button to  the variable cancelButton. For the modal window.
 
-var star1 = document.querySelector('.oneStar');                                 // WORKS:                 //  define star1 variable
-var star2 = document.querySelector('.twoStar');                                 // WORKS:                 //  define star2 variable
-var star3 = document.querySelector('.threeStar');                               // WORKS:                 //  define star3 variable
+const star1 = document.querySelector('.oneStar');                                 // WORKS:                 //  define star1 variable
+const star2 = document.querySelector('.twoStar');                                 // WORKS:                 //  define star2 variable
+const star3 = document.querySelector('.threeStar');                               // WORKS:                 //  define star3 variable
 
-var mStar1 = document.querySelector('.fa1');
-var mStar2 = document.querySelector('.fa2');
-var mStar3 = document.querySelector('.fa3');
+const mStar1 = document.querySelector('.fa1');
+const mStar2 = document.querySelector('.fa2');
+const mStar3 = document.querySelector('.fa3');
 
-var mTime = document.querySelector('.modalTime');
-var mMoves = document.querySelector('.modalMoves');
-var mReset = document.querySelector('.modalReset');                             // WORKS!
-var cancelButton = document.querySelector('.modalCancel');                      // WORKS!
+const mTime = document.querySelector('.modalTime');
+const mMoves = document.querySelector('.modalMoves');
+const mReset = document.querySelector('.modalReset');                             // WORKS!
 
 
 /*******************************************************************************
@@ -110,7 +109,7 @@ This data was used to create the scoring table listed below.
                 initialize Game
 
 *******************************************************************************/
-function initGame() {
+function  initGame() {
   const deck = document.querySelector('.deck');
   moves = 0;                                                                    // move variable set to zero.
   sec = 0;                                                                      //  sec variable set to zero.
@@ -123,8 +122,8 @@ function initGame() {
   deck.innerHTML = cardHTML.join('');                                           // WORKS! Deck of cards with icons is constructed  //   fix icons - DONE
 }
 
-initGame();
 
+initGame();
 /*******************************************************************************
                  RESTART FUNCTION
 *******************************************************************************/
@@ -137,8 +136,18 @@ restart.addEventListener('click', function restoreClass(){
 
   openCards = [];
   restoreStars();                                                               // WORKS!! restore stars
-  initGame();                                                                   // WORKS! cards reset/ icons shuffled. /BUG - click event lost
-});                                                                             // WORKS!  event listener - listens for click on the div restart, // WORKS! : then runs the function initGame().
+  const deck = document.querySelector('.deck');
+  moves = 0;                                                                    // move variable set to zero.
+  sec = 0;                                                                      //  sec variable set to zero.
+  advanceMoves();
+  timerStart();                                                                 // function WORKS
+
+  const cardHTML = shuffle(cards).map(function(card){
+    return generateCard(card);
+  });
+  deck.innerHTML = cardHTML.join('');
+  }                                                                 // WORKS! cards reset/ icons shuffled. /BUG - click event lost
+);                                                                             // WORKS!  event listener - listens for click on the div restart, // WORKS! : then runs the function initGame().
 
 
 

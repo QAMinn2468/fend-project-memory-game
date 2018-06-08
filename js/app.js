@@ -129,23 +129,26 @@ initGame();
 *******************************************************************************/
 const restart = document.querySelector('.restart');                             // WORKS!  assign restart class to restart variable.
 
-restart.addEventListener('click', function restoreClass(){
-  openCards.forEach(function(card) {
-    card.classList.remove('match');                                             // WORKS!  match class is removed.
-  });
+  restart.addEventListener('click', function restoreClass(){
+    document.location.href = "";
 
-  openCards = [];
-  restoreStars();                                                               // WORKS!! restore stars
-  const deck = document.querySelector('.deck');
-  moves = 0;                                                                    // move variable set to zero.
-  sec = 0;                                                                      //  sec variable set to zero.
-  advanceMoves();
-  timerStart();                                                                 // function WORKS
 
-  const cardHTML = shuffle(cards).map(function(card){
-    return generateCard(card);
-  });
-  deck.innerHTML = cardHTML.join('');
+//   openCards.forEach(function(card) {
+//     card.classList.remove('match');                                             // WORKS!  match class is removed.
+//   });
+//
+//   openCards = [];
+//   restoreStars();                                                               // WORKS!! restore stars
+//   const deck = document.querySelector('.deck');
+//   moves = 0;                                                                    // move variable set to zero.
+//   sec = 0;                                                                      //  sec variable set to zero.
+//   advanceMoves();
+//   timerStart();                                                                 // function WORKS
+//
+//   const cardHTML = shuffle(cards).map(function(card){
+//     return generateCard(card);
+//   });
+//   deck.innerHTML = cardHTML.join('');
   }                                                                 // WORKS! cards reset/ icons shuffled. /BUG - click event lost
 );                                                                             // WORKS!  event listener - listens for click on the div restart, // WORKS! : then runs the function initGame().
 
@@ -289,14 +292,15 @@ function youWon(){
 
   mReset.addEventListener('click', function restoreClass(){                       // WORKS! attaches click of reset button to reset the game.
     wonDialog.style.display = "none";
+    document.location.href = "";
 
-    openCards.forEach(function(card) {
-      card.classList.remove('match');
-    });
-
-    openCards = [];
-    restoreStars();
-    initGame();                                    // TODO: partial function - works as well as the main reset button.
+    // openCards.forEach(function(card) {
+    //   card.classList.remove('match');
+    // });
+    //
+    // openCards = [];
+    // restoreStars();
+    // initGame();                                    // TODO: partial function - works as well as the main reset button.
   });
 
   cancelButton.addEventListener('click', function(){                            // WORKS! attaches click of close button to closing the modal window.
